@@ -1,5 +1,7 @@
 #### ERD
 ![ERD](https://github.com/user-attachments/assets/e966406d-1092-4789-96f8-d31d94637732)
+
+
 Documentation of the Design
 Why These Entities Were Chosen
 The goal of the design is to model the different employee roles within a library and represent their specific responsibilities and attributes. The Library Employee supertype is used to avoid data redundancy and encapsulate common attributes shared by all employees, while the subtypes focus on distinct roles.
