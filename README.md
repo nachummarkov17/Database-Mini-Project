@@ -1,69 +1,89 @@
-#### ERD
+# ERD
 ![ERD](https://github.com/user-attachments/assets/e966406d-1092-4789-96f8-d31d94637732)
 
 
-Documentation of the Design
-Why These Entities Were Chosen
-The goal of the design is to model the different employee roles within a library and represent their specific responsibilities and attributes. The Library Employee supertype is used to avoid data redundancy and encapsulate common attributes shared by all employees, while the subtypes focus on distinct roles.
+# Library Employee ERD Documentation
 
-Library Employee (Supertype):
+## **Overview**
+This design models the different employee roles within a library and represents their specific responsibilities and attributes. The **Library Employee** supertype is used to centralize shared attributes, while the subtypes focus on the unique aspects of each role.
 
-Represents the general information shared by all employees, such as ID, Name, Date of Birth, Salary, and Expiration of Contract.
-This ensures that the core details of employees are centralized and managed efficiently.
-Librarians:
+---
 
-Chosen to represent employees who manage and maintain book collections.
-Subtype-Specific Attribute: Section denotes the area of responsibility within the library (e.g., Fiction, Reference, Periodicals).
-Marketers:
+## **Entities and Attributes**
 
-Represent employees who promote library services and events.
-Subtype-Specific Attribute: Specialization highlights their area of focus, such as digital marketing, event planning, or public relations.
-Artists:
+### **Library Employee (Supertype)**
+Represents general information shared by all employees:
+- **Attributes**:
+  - `ID`: Unique identifier for each employee.
+  - `Name`: Full name of the employee.
+  - `Date of Birth`: Employee's birthdate.
+  - `Salary`: Monthly or yearly salary.
+  - `Expiration of Contract`: End date of the employee's contract.
 
-Represent creative contributors involved in preservation or artistic projects.
-Subtype-Specific Attribute: Project Name specifies the preservation project or artwork they are working on.
-Desk Personnel:
+### **Subtypes and Specific Attributes**
 
-Represent employees who handle inquiries, reservations, and patron services at the library desk.
-Subtype-Specific Attribute: Workstation identifies their physical location (e.g., Main Desk, Help Desk).
-Store Operators:
+1. **Librarians**
+   - **Subtype-Specific Attribute**: 
+     - `Section`: The library section they manage (e.g., Fiction, Reference, Periodicals).
 
-Represent employees who manage the library's retail store, selling books, merchandise, or stationery.
-Subtype-Specific Attribute: Store Type indicates whether the operator is managing books, merchandise, or other items.
-Security:
+2. **Marketers**
+   - **Subtype-Specific Attribute**: 
+     - `Specialization`: Focus area such as digital marketing, event planning, or public relations.
 
-Represent employees responsible for maintaining safety and ensuring access control.
-Subtype-Specific Attributes:
-Role indicates their responsibility (e.g., gatekeeper, surveillance).
-Area specifies the section of the library they are assigned to.
-How These Entities Were Chosen
-Normalization:
+3. **Artists**
+   - **Subtype-Specific Attribute**:
+     - `Project Name`: The preservation or artistic project they are working on.
 
-The design follows normalization principles by storing common data (e.g., Name, Salary) in the supertype and role-specific data in the subtypes.
-This reduces redundancy and improves data integrity.
-Disjointness:
+4. **Desk Personnel**
+   - **Subtype-Specific Attribute**:
+     - `Workstation`: Their physical location in the library (e.g., Main Desk, Help Desk).
 
-The "d" symbol represents disjointness, meaning an employee can belong to only one subtype at a time. This ensures clarity in defining employee roles and avoids overlap.
-Use Cases and Target Users:
+5. **Store Operators**
+   - **Subtype-Specific Attribute**:
+     - `Store Type`: The type of items they manage (e.g., Books, Merchandise, Stationery).
 
-Librarians: Manage collections and assist patrons with book-related inquiries.
-Marketers: Create campaigns to promote library activities and increase engagement.
-Artists: Contribute to preservation projects or design artistic displays.
-Desk Personnel: Handle face-to-face interactions with visitors and ensure smooth operations.
-Store Operators: Run the library store and manage retail transactions.
-Security: Ensure the safety of patrons and staff, as well as the security of the library's collections.
-What Parts of the Process Are Not Covered
-Projects or Events:
+6. **Security**
+   - **Subtype-Specific Attributes**:
+     - `Role`: Their responsibility (e.g., gatekeeper, surveillance).
+     - `Area`: The section of the library they are assigned to.
 
-The design does not model specific library events or campaigns that employees might be involved in. Adding a separate Event or Project entity could provide more depth.
-Teamwork or Collaboration:
+---
 
-The model does not include team structures or collaboration between employees, which could be useful for projects or shifts.
-Visitor Interaction:
+## **Design Principles**
 
-There’s no representation of patrons or how they interact with employees. Adding a Visitor entity could model interactions like inquiries, book loans, or purchases.
-Shift Schedules:
+1. **Normalization**
+   - Common data (e.g., `Name`, `Salary`) is stored in the supertype to reduce redundancy.
+   - Role-specific data is captured in the subtypes to improve data integrity and clarity.
 
-While attributes like Shift Start/End could be implied, they are not explicitly represented. A separate Shift Schedule entity could track work hours and assignments.
-Conclusion
-This design effectively models the roles and responsibilities of library employees using a normalized structure. It can be extended to include additional processes like visitor interactions, events, and scheduling to provide a more comprehensive view of library operations. 
+2. **Disjointness**
+   - The "d" symbol in the ERD represents disjointness, ensuring an employee can belong to only one subtype at a time. This avoids overlap between roles.
+
+3. **Use Cases and Target Users**
+   - **Librarians**: Manage book collections and assist patrons with inquiries.
+   - **Marketers**: Promote library activities and engage with the public.
+   - **Artists**: Contribute to preservation projects or create artistic displays.
+   - **Desk Personnel**: Handle visitor interactions and ensure smooth front desk operations.
+   - **Store Operators**: Manage the library's retail store and merchandise.
+   - **Security**: Maintain the safety of patrons, staff, and collections.
+
+---
+
+## **What Parts of the Process Are Not Covered**
+
+1. **Projects or Events**
+   - The design does not include specific library events or campaigns that employees might be involved in. Adding an **Event** or **Project** entity could provide more depth.
+
+2. **Teamwork or Collaboration**
+   - Team structures or collaborations between employees are not represented. This could be useful for projects or shift management.
+
+3. **Visitor Interaction**
+   - The design does not include patrons or how they interact with employees. Adding a **Visitor** entity could model interactions like inquiries, book loans, or purchases.
+
+4. **Shift Schedules**
+   - While implied in certain attributes, shift schedules are not explicitly represented. A separate **Shift Schedule** entity could help track work hours and assignments.
+
+---
+
+## **Conclusion**
+This design effectively models the roles and responsibilities of library employees using a normalized structure. It can be extended to include additional processes like visitor interactions, events, and scheduling to provide a more comprehensive view of library operations.
+
