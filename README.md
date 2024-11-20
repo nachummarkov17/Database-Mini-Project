@@ -1,6 +1,8 @@
 # ERD
 ![ERD](https://github.com/user-attachments/assets/4862940d-5872-4164-9230-96a39ad10367)
 
+# DSD
+![DSD](https://github.com/user-attachments/assets/a69bcb59-d66f-4ac4-8d06-1ba985f1df75)
 
 
 # ERD Documentation: Library Employee Management System
