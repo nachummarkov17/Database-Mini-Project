@@ -99,7 +99,7 @@ The **Marketer** entity has a **Manages** relationship with **Social Media**. Th
 ## What’s Not Covered
 
 - **Employee Scheduling**: The ERD does not cover employee scheduling or shift management, which could be important for roles like **Desk Personnel** or **Security**.
-- **Event Tracking**: While marketers and librarians may be involved in events, there is no specific entity for event management in this ERD.
+- **Event Tracking**: There is no specific entity for event management in this ERD.
 - **Library Inventory**: The ERD does not track library inventory (books, resources, etc.), which could be a separate system for managing physical and digital library assets.
 
 ## Conclusion
