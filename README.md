@@ -166,3 +166,8 @@ This document explains the process of generating data for the database, includin
      - Simulating real-world scenarios in data-driven applications.
 
 
+## Dump Process (Backup and Restore)
+
+In order to execute a dump, run the provided batch script with: `.\dump_database.bat` and input your Postgres username (default is simply postgres) and password (default is your computer password).
+Sample output: ![Uploading image.png…]()
+
