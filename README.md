@@ -1,9 +1,10 @@
 # ERD
+
 ![ERD](https://github.com/user-attachments/assets/4862940d-5872-4164-9230-96a39ad10367)
 
 # DSD
-![DSD](https://github.com/user-attachments/assets/a69bcb59-d66f-4ac4-8d06-1ba985f1df75)
 
+![DSD](https://github.com/user-attachments/assets/a69bcb59-d66f-4ac4-8d06-1ba985f1df75)
 
 # ERD Documentation: Library Employee Management System
 
@@ -108,23 +109,6 @@ The **Marketer** entity has a **Manages** relationship with **Social Media**. Th
 
 This ERD design addresses the core needs of managing library employees across various roles, their responsibilities, and the platforms or locations they interact with. It ensures clarity in tracking each employee's unique attributes while maintaining a consistent structure for the library's operations. Future improvements could involve adding features like employee schedules, event tracking, or inventory management.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Data Generation Process
 
 This document explains the process of generating data for the database, including automated scripts for large-scale data generation and manual creation for smaller datasets.
@@ -147,28 +131,40 @@ This document explains the process of generating data for the database, includin
 ### Key Features of the Process
 
 #### 1. **Scalability**
-   - The Python scripts are capable of handling **large-scale data generation**.
-   - Row counts can be adjusted easily by modifying script parameters.
+
+- The Python scripts are capable of handling **large-scale data generation**.
+- Row counts can be adjusted easily by modifying script parameters.
 
 #### 2. **Reproducibility**
-   - Randomized fields were used in the scripts to ensure variety in the generated data.
-   - Scripts can be modified to use a **fixed seed** (`random.seed()`) for deterministic outputs.
+
+- Randomized fields were used in the scripts to ensure variety in the generated data.
+- Scripts can be modified to use a **fixed seed** (`random.seed()`) for deterministic outputs.
 
 #### 3. **Validation**
-   - Generated CSV files were carefully inspected for:
-     - **Data consistency**: Ensuring no missing or misaligned fields.
-     - **Data validity**: Verifying logical relationships between fields.
+
+- Generated CSV files were carefully inspected for:
+  - **Data consistency**: Ensuring no missing or misaligned fields.
+  - **Data validity**: Verifying logical relationships between fields.
 
 #### 4. **Use Cases**
-   - The generated data is ideal for:
-     - Testing database performance with large datasets.
-     - Querying relationships between entities for analytics.
-     - Simulating real-world scenarios in data-driven applications.
 
+- The generated data is ideal for:
+  - Testing database performance with large datasets.
+  - Querying relationships between entities for analytics.
+  - Simulating real-world scenarios in data-driven applications.
 
 ## Dump Process (Backup and Restore)
 
-In order to execute a dump, run the provided batch script with: `.\dump_database.bat` and input your Postgres username (default is simply postgres) and password (default is your computer password).
+In order to execute a dump, run the provided batch script with: `.\dump_database.bat` and input your Postgres username (default is simply postgres) and Postgres password.
 Sample output: ![image](https://github.com/user-attachments/assets/a66b1f85-1af6-4b31-93c4-19293da0a375)
 
+## Setting up the database
 
+To create the database, run the following command:
+`psql -U postgres -f "sql files/create_database.sql"`
+
+To set up the database schema, run the following command:
+`psql -U postgres -d library_employees_db -f "sql files/create_schema.sql"`
+
+To insert all of the data into the tables, run the following command:
+`psql -U postgres -d library_employees_db -f "sql files/load_data.sql"`
