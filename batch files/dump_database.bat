@@ -2,6 +2,15 @@
 :: Prompt for PostgreSQL username
 set /p DB_USER=Enter your PostgreSQL username: 
 
+:: Get the current directory
+set CURRENT_DIR=%cd%
+
+:: Replace "batch files" with "sql files" in the current directory path
+set NEW_DIR=%CURRENT_DIR:batch files=sql files%
+
+:: Change to the new directory
+cd /d "%NEW_DIR%"
+
 :: Database name and output file
 set DB_NAME=library_employees_db
 set OUTPUT_FILE=database_dump.sql
