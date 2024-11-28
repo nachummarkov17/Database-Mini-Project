@@ -155,16 +155,22 @@ This document explains the process of generating data for the database, includin
 
 ## Dump Process (Backup and Restore)
 
-In order to execute a dump, run the provided batch script with: `.\dump_database.bat` and input your Postgres username (default is simply postgres) and Postgres password.
+In order to execute a dump, navigate to the batch files folder with `cd '.\batch files\'` and run the provided batch script with: `.\dump_database.bat` and input your Postgres username (default is simply postgres) and Postgres password.
 Sample output: ![image](https://github.com/user-attachments/assets/a66b1f85-1af6-4b31-93c4-19293da0a375)
 
 ## Setting up the database
 
-To create the database, run the following command:
+To create the database, run the following command from the root:
 `psql -U postgres -f "sql files/create_database.sql"`
 
-To set up the database schema, run the following command:
+To set up the database schema, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/create_schema.sql"`
 
-To insert all of the data into the tables, run the following command:
-`psql -U postgres -d library_employees_db -f "sql files/load_data.sql"`
+To insert all of the data into the tables, run the following command from batch files:
+`.\run_load_data.bat`
+
+To delete all of the from the table, run the following command from the root:
+`psql -U postgres -d library_employees_db -f "sql files/delete_data.sql"`
+
+To delete the entire database, run the following command from the root:
+`psql -U postgres -d library_employees_db -f "sql files/delete_database.sql"`
