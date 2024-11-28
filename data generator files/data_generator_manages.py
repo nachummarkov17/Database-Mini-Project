@@ -1,5 +1,15 @@
 import csv
 import random
+import os
+
+# Get the current working directory
+current_directory = os.getcwd()
+
+base_directory = os.path.join(os.getcwd(), "csv files")
+
+# Change the current directory to the new base directory
+os.makedirs(base_directory, exist_ok=True)  # Ensure the directory exists
+os.chdir(base_directory)  # Change to the new directory
 
 # Define social media platforms and their usernames
 platforms = [
@@ -18,53 +28,64 @@ platform_usernames = {
 
 # Read marketers
 marketers = []
-with open("marketers.csv", "r") as marketers_file:
-    csv_reader = csv.DictReader(marketers_file)
-    marketers = list(csv_reader)
+# Define the file path for the marketers CSV
+marketers_file_path = os.path.join(base_directory, "marketers.csv")
 
-# Assign each marketer to a random account and platform
-manages_data = []
-for marketer in marketers:
-    # Randomly select a platform
-    platform = random.choice(platforms)
-    platform_name = platform["Platform"]
+# Check if marketers.csv exists before trying to read it
+if os.path.exists(marketers_file_path):
+    with open(marketers_file_path, "r") as marketers_file:
+        csv_reader = csv.DictReader(marketers_file)
+        marketers = list(csv_reader)
+else:
+    print(f"Error: {marketers_file_path} not found.")
 
-    # Randomly select a username from the chosen platform
-    username = random.choice(platform_usernames[platform_name])
+# If marketers data is loaded, proceed with assigning platforms and usernames
+if marketers:
+    # Assign each marketer to a random account and platform
+    manages_data = []
+    for marketer in marketers:
+        # Randomly select a platform
+        platform = random.choice(platforms)
+        platform_name = platform["Platform"]
 
-    manages_data.append(
-        {
-            "Username": username,
-            "Platform": platform_name,
-            "MarketerID": marketer["ID"],
-            "FollowerCount": random.randint(1000, 50000),
-            "TargetAudience": random.choice(
-                [
-                    "Tech Enthusiasts",
-                    "Fashion Lovers",
-                    "Business Professionals",
-                    "Teenagers",
-                    "Gen Z",
-                    "News Readers",
-                    "Health Enthusiasts",
-                    "Fitness Buffs",
-                    "Foodies",
-                ]
-            ),
-        }
-    )
+        # Randomly select a username from the chosen platform
+        username = random.choice(platform_usernames[platform_name])
 
-# Write the Manages table to CSV
-with open("manages.csv", "w", newline="") as manages_file:
-    fieldnames = [
-        "Username",
-        "Platform",
-        "MarketerID",
-        "FollowerCount",
-        "TargetAudience",
-    ]
-    csv_writer = csv.DictWriter(manages_file, fieldnames=fieldnames)
-    csv_writer.writeheader()
-    csv_writer.writerows(manages_data)
+        manages_data.append(
+            {
+                "Username": username,
+                "Platform": platform_name,
+                "MarketerID": marketer["ID"],
+                "FollowerCount": random.randint(1000, 50000),
+                "TargetAudience": random.choice(
+                    [
+                        "Tech Enthusiasts",
+                        "Fashion Lovers",
+                        "Business Professionals",
+                        "Teenagers",
+                        "Gen Z",
+                        "News Readers",
+                        "Health Enthusiasts",
+                        "Fitness Buffs",
+                        "Foodies",
+                    ]
+                ),
+            }
+        )
 
-print("Manages CSV has been generated.")
+    # Write the Manages table to CSV
+    with open("manages.csv", "w", newline="") as manages_file:
+        fieldnames = [
+            "Username",
+            "Platform",
+            "MarketerID",
+            "FollowerCount",
+            "TargetAudience",
+        ]
+        csv_writer = csv.DictWriter(manages_file, fieldnames=fieldnames)
+        csv_writer.writeheader()
+        csv_writer.writerows(manages_data)
+
+    print("Manages CSV has been generated.")
+else:
+    print("No marketers data found to process.")

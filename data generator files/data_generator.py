@@ -1,11 +1,11 @@
 import random
 from datetime import datetime, timedelta
-
+import os
+import csv
 from faker import Faker
 
 # Initialize Faker
 fake = Faker()
-
 
 # Helper function to generate a random date without time zone conflicts
 def random_date(start, end):
@@ -34,8 +34,8 @@ def generate_store_operator(id_counter):
     return {
         "ID": id_counter,
         "StoreType": random.choice(["Bookstore", "Retail", "Library Supply"]),
-        "StoreName": fake.company(),
-        "StoreLocation": random.choice("ABCDEF"),
+        "StoreName": fake.company().replace(",", "-").replace("- ", "-"),
+        "StoreLocation": random.choice(["A", "B", "C", "D", "E", "F"]),
     }
 
 
@@ -87,6 +87,16 @@ def generate_marketer(id_counter):
 
 # Main function to generate data
 def generate_data():
+    # Define the desired directory path for saving the files
+    base_directory = os.path.join(os.getcwd(), "csv files")
+
+    # Ensure the directory exists
+    os.makedirs(base_directory, exist_ok=True)
+
+    # Change the current directory to the new base directory
+    os.chdir(base_directory)
+
+    # Define file paths using the new base directory
     library_employee_file = "library_employees.csv"
     store_operator_file = "store_operators.csv"
     librarian_file = "librarians.csv"
@@ -94,32 +104,40 @@ def generate_data():
     desk_personnel_file = "desk_personnel.csv"
     marketer_file = "marketers.csv"
 
-    # Open files for writing
-    with open(library_employee_file, "w") as le_file, open(
-        store_operator_file, "w"
-    ) as so_file, open(librarian_file, "w") as lib_file, open(
-        security_file, "w"
+    # Open files for writing using CSV writer
+    with open(library_employee_file, "w", newline="") as le_file, open(
+        store_operator_file, "w", newline=""
+    ) as so_file, open(librarian_file, "w", newline="") as lib_file, open(
+        security_file, "w", newline=""
     ) as sec_file, open(
-        desk_personnel_file, "w"
+        desk_personnel_file, "w", newline=""
     ) as dp_file, open(
-        marketer_file, "w"
+        marketer_file, "w", newline=""
     ) as mar_file:
 
-        # Headers
-        le_file.write("ID,Name,DateOfBirth,Salary,ExpirationOfContract\n")
-        so_file.write("ID,StoreType,StoreName,StoreLocation\n")
-        lib_file.write("ID,Section,Expertise,YearsOfExperience\n")
-        sec_file.write("ID,Area,Role,ClearanceLevel\n")
-        dp_file.write("ID,Workstation,DeskNumber,Floor\n")
-        mar_file.write("ID,Specialisation,Certification,CreativeSkill\n")
+        # Set up CSV writers to automatically handle commas in values
+        le_writer = csv.writer(le_file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        so_writer = csv.writer(so_file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        lib_writer = csv.writer(lib_file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        sec_writer = csv.writer(sec_file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        dp_writer = csv.writer(dp_file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+        mar_writer = csv.writer(mar_file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
+
+        # Write headers
+        le_writer.writerow(["ID", "Name", "DateOfBirth", "Salary", "ExpirationOfContract"])
+        so_writer.writerow(["ID", "StoreType", "StoreName", "StoreLocation"])
+        lib_writer.writerow(["ID", "Section", "Expertise", "YearsOfExperience"])
+        sec_writer.writerow(["ID", "Area", "Role", "ClearanceLevel"])
+        dp_writer.writerow(["ID", "Workstation", "DeskNumber", "Floor"])
+        mar_writer.writerow(["ID", "Specialisation", "Certification", "CreativeSkill"])
 
         id_counter = 1
         for _ in range(200000):  # Generate 200,000 records
             # Generate a library employee
             employee = generate_library_employee(id_counter)
-            le_file.write(
-                f"{employee['ID']},{employee['Name']},{employee['DateOfBirth']},"
-                f"{employee['Salary']},{employee['ExpirationOfContract']}\n"
+            le_writer.writerow(
+                [employee['ID'], employee['Name'], employee['DateOfBirth'],
+                 employee['Salary'], employee['ExpirationOfContract']]
             )
 
             # Randomly assign the employee to one of the subtypes
@@ -129,28 +147,28 @@ def generate_data():
 
             if subtype == "StoreOperator":
                 so = generate_store_operator(id_counter)
-                so_file.write(
-                    f"{so['ID']},{so['StoreType']},{so['StoreName']},{so['StoreLocation']}\n"
+                so_writer.writerow(
+                    [so['ID'], so['StoreType'], so['StoreName'], so['StoreLocation']]
                 )
             elif subtype == "Librarian":
                 lib = generate_librarian(id_counter)
-                lib_file.write(
-                    f"{lib['ID']},{lib['Section']},{lib['Expertise']},{lib['YearsOfExperience']}\n"
+                lib_writer.writerow(
+                    [lib['ID'], lib['Section'], lib['Expertise'], lib['YearsOfExperience']]
                 )
             elif subtype == "Security":
                 sec = generate_security(id_counter)
-                sec_file.write(
-                    f"{sec['ID']},{sec['Area']},{sec['Role']},{sec['ClearanceLevel']}\n"
+                sec_writer.writerow(
+                    [sec['ID'], sec['Area'], sec['Role'], sec['ClearanceLevel']]
                 )
             elif subtype == "DeskPersonnel":
                 dp = generate_desk_personnel(id_counter)
-                dp_file.write(
-                    f"{dp['ID']},{dp['Workstation']},{dp['DeskNumber']},{dp['Floor']}\n"
+                dp_writer.writerow(
+                    [dp['ID'], dp['Workstation'], dp['DeskNumber'], dp['Floor']]
                 )
             elif subtype == "Marketer":
                 mar = generate_marketer(id_counter)
-                mar_file.write(
-                    f"{mar['ID']},{mar['Specialisation']},{mar['Certification']},{mar['CreativeSkill']}\n"
+                mar_writer.writerow(
+                    [mar['ID'], mar['Specialisation'], mar['Certification'], mar['CreativeSkill']]
                 )
 
             id_counter += 1
