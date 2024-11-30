@@ -1,3 +1,5 @@
+BEGIN;
+
 -- Create Library Employee Table
 CREATE TABLE LibraryEmployee (
     ID INT PRIMARY KEY,
@@ -70,3 +72,5 @@ CREATE TABLE Manages (
     FOREIGN KEY (MarketerID) REFERENCES Marketer(ID),
     FOREIGN KEY (Platform) REFERENCES SocialMedia(Platform)
 );
+
+COMMIT;

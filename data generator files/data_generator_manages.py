@@ -1,6 +1,6 @@
 import csv
-import random
 import os
+import random
 
 # Get the current working directory
 current_directory = os.getcwd()
@@ -53,9 +53,9 @@ if marketers:
 
         manages_data.append(
             {
-                "Username": username,
-                "Platform": platform_name,
                 "MarketerID": marketer["ID"],
+                "Platform": platform_name,
+                "Username": username,
                 "FollowerCount": random.randint(1000, 50000),
                 "TargetAudience": random.choice(
                     [
@@ -76,9 +76,9 @@ if marketers:
     # Write the Manages table to CSV
     with open("manages.csv", "w", newline="") as manages_file:
         fieldnames = [
-            "Username",
-            "Platform",
             "MarketerID",
+            "Platform",
+            "Username",
             "FollowerCount",
             "TargetAudience",
         ]

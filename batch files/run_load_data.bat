@@ -13,9 +13,7 @@ set DESK_PERSONNEL_CSV=%CSV_PATH%\desk_personnel.csv
 set MARKETERS_CSV=%CSV_PATH%\marketers.csv
 set SOCIAL_MEDIA_CSV=%CSV_PATH%\social_medias.csv
 set MANAGES_CSV=%CSV_PATH%\manages.csv
-
-REM Absolute path for Librarians (assuming it's in the same directory as the batch file)
-set LIBRARIANS_CSV=%CURRENT_DIR%\librarians.csv
+set LIBRARIANS_CSV=%CSV_PATH%\librarians.csv
 
 REM Write SQL queries to a temporary file
 echo BEGIN; > temp_load_data.sql

@@ -1,4 +1,4 @@
--- Check if the database already exists, and drop it if needed
+-- Check if the database already exists
 DO $$ 
 BEGIN
     IF EXISTS (SELECT 1 FROM pg_database WHERE datname = 'library_employees_db') THEN

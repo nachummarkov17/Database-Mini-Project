@@ -1,11 +1,14 @@
+import csv
+import os
 import random
 from datetime import datetime, timedelta
-import os
-import csv
+
 from faker import Faker
 
 # Initialize Faker
 fake = Faker()
+fake.unique.clear()  # Clear previous state of unique constraints
+
 
 # Helper function to generate a random date without time zone conflicts
 def random_date(start, end):
@@ -34,7 +37,7 @@ def generate_store_operator(id_counter):
     return {
         "ID": id_counter,
         "StoreType": random.choice(["Bookstore", "Retail", "Library Supply"]),
-        "StoreName": fake.company().replace(",", "-").replace("- ", "-"),
+        "StoreName": fake.unique.company().replace(",", "-").replace("- ", "-"),
         "StoreLocation": random.choice(["A", "B", "C", "D", "E", "F"]),
     }
 
@@ -59,14 +62,28 @@ def generate_security(id_counter):
     }
 
 
-# Generate Desk Personnel
+# Global set to track unique workstation, desk number, and floor combinations
+unique_desk_combinations = set()
+
+
 def generate_desk_personnel(id_counter):
-    return {
-        "ID": id_counter,
-        "Workstation": f"Workstation-{random.randint(1, 50)}",
-        "DeskNumber": f"Desk-{random.randint(1, 100)}",
-        "Floor": random.randint(1, 5),
-    }
+    global unique_desk_combinations
+    while True:
+        # Generate random values
+        workstation = f"Workstation-{random.randint(1, 100)}"
+        desk_number = f"Desk-{random.randint(1, 150)}"
+        floor = random.randint(1, 5)
+        # Create the tuple
+        unique_tuple = (workstation, desk_number, floor)
+        # Check if the tuple is unique
+        if unique_tuple not in unique_desk_combinations:
+            unique_desk_combinations.add(unique_tuple)  # Add to the set
+            return {
+                "ID": id_counter,
+                "Workstation": workstation,
+                "DeskNumber": desk_number,
+                "Floor": floor,
+            }
 
 
 # Generate Marketer
@@ -124,7 +141,9 @@ def generate_data():
         mar_writer = csv.writer(mar_file, quotechar='"', quoting=csv.QUOTE_MINIMAL)
 
         # Write headers
-        le_writer.writerow(["ID", "Name", "DateOfBirth", "Salary", "ExpirationOfContract"])
+        le_writer.writerow(
+            ["ID", "Name", "DateOfBirth", "Salary", "ExpirationOfContract"]
+        )
         so_writer.writerow(["ID", "StoreType", "StoreName", "StoreLocation"])
         lib_writer.writerow(["ID", "Section", "Expertise", "YearsOfExperience"])
         sec_writer.writerow(["ID", "Area", "Role", "ClearanceLevel"])
@@ -136,8 +155,13 @@ def generate_data():
             # Generate a library employee
             employee = generate_library_employee(id_counter)
             le_writer.writerow(
-                [employee['ID'], employee['Name'], employee['DateOfBirth'],
-                 employee['Salary'], employee['ExpirationOfContract']]
+                [
+                    employee["ID"],
+                    employee["Name"],
+                    employee["DateOfBirth"],
+                    employee["Salary"],
+                    employee["ExpirationOfContract"],
+                ]
             )
 
             # Randomly assign the employee to one of the subtypes
@@ -148,27 +172,37 @@ def generate_data():
             if subtype == "StoreOperator":
                 so = generate_store_operator(id_counter)
                 so_writer.writerow(
-                    [so['ID'], so['StoreType'], so['StoreName'], so['StoreLocation']]
+                    [so["ID"], so["StoreType"], so["StoreName"], so["StoreLocation"]]
                 )
             elif subtype == "Librarian":
                 lib = generate_librarian(id_counter)
                 lib_writer.writerow(
-                    [lib['ID'], lib['Section'], lib['Expertise'], lib['YearsOfExperience']]
+                    [
+                        lib["ID"],
+                        lib["Section"],
+                        lib["Expertise"],
+                        lib["YearsOfExperience"],
+                    ]
                 )
             elif subtype == "Security":
                 sec = generate_security(id_counter)
                 sec_writer.writerow(
-                    [sec['ID'], sec['Area'], sec['Role'], sec['ClearanceLevel']]
+                    [sec["ID"], sec["Area"], sec["Role"], sec["ClearanceLevel"]]
                 )
             elif subtype == "DeskPersonnel":
                 dp = generate_desk_personnel(id_counter)
                 dp_writer.writerow(
-                    [dp['ID'], dp['Workstation'], dp['DeskNumber'], dp['Floor']]
+                    [dp["ID"], dp["Workstation"], dp["DeskNumber"], dp["Floor"]]
                 )
             elif subtype == "Marketer":
                 mar = generate_marketer(id_counter)
                 mar_writer.writerow(
-                    [mar['ID'], mar['Specialisation'], mar['Certification'], mar['CreativeSkill']]
+                    [
+                        mar["ID"],
+                        mar["Specialisation"],
+                        mar["Certification"],
+                        mar["CreativeSkill"],
+                    ]
                 )
 
             id_counter += 1
