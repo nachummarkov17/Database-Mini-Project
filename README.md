@@ -175,6 +175,41 @@ $duration = $endTime - $startTime
 "Restore completed in $($duration.TotalSeconds) seconds" | Out-File -FilePath backupPSQL.log -Append
 `
 
+## Backup and Restore Logging
+
+This project includes database backup and restore functionality. Timing and logging details are included for transparency and debugging purposes.
+
+### Files:
+
+1. **`backupSQL.sql`**:
+
+   - A SQL dump of the `library_employees_db` database.
+   - Created using `pg_dump` with `--inserts`, `--clean`, and `--if-exists` options for better reproducibility.
+
+2. **`backupSQL.log`**:
+
+   - Logs the verbose output of the `pg_dump` command.
+   - Includes the duration taken to complete the backup.
+
+3. **`backupPSQL.log`**:
+   - Logs the verbose output of the `psql` restore command.
+   - Includes the duration taken to complete the restore.
+
+### Timing Details
+
+- Timing statistics are captured using PowerShell's `Get-Date` and logged at the end of each `.log` file.
+- Backup duration is appended to `backupSQL.log`.
+- Restore duration is appended to `backupPSQL.log`.
+
+### Git-LFS Integration
+
+Large files such as `.sql` and `.log` files are tracked using Git-LFS to prevent bloating the repository size. If you clone this repository, ensure you have Git-LFS installed:
+
+```
+git lfs install
+git lfs pull
+```
+
 ## Setting up the database
 
 To create the database, run the following command from the root:
