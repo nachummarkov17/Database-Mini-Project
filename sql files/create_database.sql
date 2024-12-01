@@ -1,13 +1,3 @@
--- Check if the database already exists
-DO $$ 
-BEGIN
-    IF EXISTS (SELECT 1 FROM pg_database WHERE datname = 'library_employees_db') THEN
-        PERFORM pg_terminate_backend(pid)
-        FROM pg_stat_activity
-        WHERE datname = 'library_employees_db';
-        DROP DATABASE library_employees_db;
-    END IF;
-END $$;
-
--- Create the database
-CREATE DATABASE library_employees_db;
+version https://git-lfs.github.com/spec/v1
+oid sha256:2021397ddca30cd6c2d2f12e373d77efc8345ab916aef63cb1fc206c4f346687
+size 398
