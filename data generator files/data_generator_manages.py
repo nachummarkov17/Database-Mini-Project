@@ -20,11 +20,6 @@ platforms = [
     {"Platform": "pinterest", "DistributionRating": 1},
 ]
 
-# Generate 20 usernames for each platform
-platform_usernames = {
-    platform["Platform"]: [f"{platform['Platform']}_user_{i}" for i in range(1, 21)]
-    for platform in platforms
-}
 
 # Read marketers
 marketers = []
@@ -43,13 +38,15 @@ else:
 if marketers:
     # Assign each marketer to a random account and platform
     manages_data = []
+    i = 0
     for marketer in marketers:
         # Randomly select a platform
         platform = random.choice(platforms)
         platform_name = platform["Platform"]
 
         # Randomly select a username from the chosen platform
-        username = random.choice(platform_usernames[platform_name])
+        username = f"user_{i}"
+        i +=1
 
         manages_data.append(
             {
