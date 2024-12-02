@@ -198,8 +198,7 @@ To run provided parametrized queries, run the following command from the root:
 Feel free to comment out any number of queries to only run what you'd like.
 
 In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" > TimedQueryLog.log
-`
+`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" > TimedQueryLog.log`
 
 ## Adding and testing constraints
 

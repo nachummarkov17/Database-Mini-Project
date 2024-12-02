@@ -13,6 +13,7 @@ BEGIN
         SELECT Name, DateOfBirth, Salary
         FROM LibraryEmployee
         ORDER BY Salary DESC
+        LIMIT 100
     ) AS result;
 
     -- Record the end time
