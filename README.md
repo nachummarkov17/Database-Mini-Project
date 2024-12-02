@@ -153,11 +153,6 @@ This document explains the process of generating data for the database, includin
   - Querying relationships between entities for analytics.
   - Simulating real-world scenarios in data-driven applications.
 
-## Dump Process (Backup and Restore)
-
-In order to execute a dump, navigate to the batch files folder with `cd '.\batch files\'` and run the provided batch script with: `.\dump_database.bat` and input your Postgres username (default is simply postgres) and Postgres password.
-Sample output: ![image](https://github.com/user-attachments/assets/a66b1f85-1af6-4b31-93c4-19293da0a375)
-
 ## Setting up the database
 
 To create the database, run the following command from the root:
@@ -177,10 +172,25 @@ To delete all of the from the table, run the following command from the root:
 To delete the entire database, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/delete_database.sql"`
 
-## Runnig queries
+## Dump Process (Backup and Restore)
+
+In order to execute a dump, run the following commands from the root:
+`$startTime = Get-Date
+pg_dump -U postgres -d library_employees_db --inserts --clean --if-exists --verbose --file=backupSQL.sql *> backupSQL.log 2>&1
+$endTime = Get-Date
+$duration = $endTime - $startTime
+"Backup completed in $($duration.TotalSeconds) seconds" | Out-File -FilePath backupSQL.log -Append`
+In order to restore the database, run the following commands from the root:
+`$startTime = Get-Date
+psql -U postgres -d library_employees_db -f backupSQL.sql *> backupPSQL.log 2>&1
+$endTime = Get-Date
+$duration = $endTime - $startTime
+"Restore completed in $($duration.TotalSeconds) seconds" | Out-File -FilePath backupPSQL.log -Append`
+
+## Running queries
 
 To run provided queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Queries.sql" > QueriesLog.log`
+`psql -U postgres -d library_employees_db -f ".\sql files\Queries.sql" > Queries.log`
 Feel free to comment out any number of queries to only run what you'd like.
 
 To run provided parametrized queries, run the following command from the root:
