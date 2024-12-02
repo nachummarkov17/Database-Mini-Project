@@ -177,9 +177,8 @@ To delete all of the from the table, run the following command from the root:
 To delete the entire database, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/delete_database.sql"`
 
-## Indexing
+## Runnig queries
 
-<<<<<<< HEAD
 To run provided queries, run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\Queries.sql" > QueriesLog.log`
 Feel free to comment out any number of queries to only run what you'd like.
@@ -199,8 +198,9 @@ Constraints can be added to the Constraints.sql file, and then applied from the 
 
 Constraints can be tested in the Test_Constraints.sql file, and ran with the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\Test_Contraints.sql" > error_log.log 2>&1`
-=======
+
+## Indexing
+
 psql -U postgres -d library_employees_db -f ".\sql files\Constraints.sql"
 
 psql -U postgres -d library_employees_db -f ".\sql files\Drop_index.sql"
->>>>>>> 2ff43df1aa5ff80f0268f0ecf973176dca91653b
