@@ -231,9 +231,22 @@ To delete the entire database, run the following command from the root:
 
 ## Running queries
 
-To run all provided queries, run the following command from the root:
+To run provided queries, run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\Queries.sql" > QueriesLog.log`
+Feel free to comment out any number of queries to only run what you'd like.
+
+To run provided parametrized queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\ParamsQueries.sql" > ParamsQueriesLog.log`
+Feel free to comment out any number of queries to only run what you'd like.
 
 In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" > TimedQueryLog.log
 `
+
+## Adding and testing constraints
+
+Constraints can be added to the Constraints.sql file, and then applied from the root with the following command:
+`psql -U postgres -d library_employees_db -f ".\sql files\Constraints.sql"`
+
+Constraints can be tested in the Test_Constraints.sql file, and ran with the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\Test_Contraints.sql" > error_log.log 2>&1`
