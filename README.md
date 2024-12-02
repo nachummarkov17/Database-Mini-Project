@@ -220,7 +220,7 @@ To set up the database schema, run the following command from the root:
 
 To generate the data for the database, navigate to the data generator files, and run data_generator.py, and then run data_generator_manages.py
 
-To insert all of the data into the tables, make sure to set the csv file folder to read for EVEREYONE, then run the following command from batch files:
+To insert all of the data into the tables, make sure to set the csv file folder to read for EVERYONE, then run the following command from batch files:
 `.\run_load_data.bat`
 
 To delete all of the from the table, run the following command from the root:
@@ -228,3 +228,12 @@ To delete all of the from the table, run the following command from the root:
 
 To delete the entire database, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/delete_database.sql"`
+
+## Running queries
+
+To run all provided queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\Queries.sql" > QueriesLog.log`
+
+In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" > TimedQueryLog.log
+`
