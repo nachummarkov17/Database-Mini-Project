@@ -211,6 +211,8 @@ Constraints can be tested in the Test_Constraints.sql file, and ran with the fol
 
 ## Indexing
 
-psql -U postgres -d library_employees_db -f ".\sql files\Constraints.sql"
+In order to create indices, run the following file from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\Constraints.sql"`
 
-psql -U postgres -d library_employees_db -f ".\sql files\Drop_index.sql"
+In order to remove the indices, run the following file from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\Drop_index.sql"`
