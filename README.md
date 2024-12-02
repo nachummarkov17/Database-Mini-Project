@@ -155,60 +155,8 @@ This document explains the process of generating data for the database, includin
 
 ## Dump Process (Backup and Restore)
 
-In order to execute a dump, run the following commands from the root:
-`
-$startTime = Get-Date
-pg_dump -U postgres -d library_employees_db --inserts --clean --if-exists --verbose --file=backupSQL.sql *> backupSQL.log 2>&1
-$endTime = Get-Date
-$duration = $endTime - $startTime
-
-"Backup completed in $($duration.TotalSeconds) seconds" | Out-File -FilePath backupSQL.log -Append
-`
-
-In order to restore the database, run the following commands from the root:
-`
-$startTime = Get-Date
-psql -U postgres -d library_employees_db -f backupSQL.sql *> backupPSQL.log 2>&1
-$endTime = Get-Date
-$duration = $endTime - $startTime
-
-"Restore completed in $($duration.TotalSeconds) seconds" | Out-File -FilePath backupPSQL.log -Append
-`
-
-## Backup and Restore Logging
-
-This project includes database backup and restore functionality. Timing and logging details are included for transparency and debugging purposes.
-
-### Files:
-
-1. **`backupSQL.sql`**:
-
-   - A SQL dump of the `library_employees_db` database.
-   - Created using `pg_dump` with `--inserts`, `--clean`, and `--if-exists` options for better reproducibility.
-
-2. **`backupSQL.log`**:
-
-   - Logs the verbose output of the `pg_dump` command.
-   - Includes the duration taken to complete the backup.
-
-3. **`backupPSQL.log`**:
-   - Logs the verbose output of the `psql` restore command.
-   - Includes the duration taken to complete the restore.
-
-### Timing Details
-
-- Timing statistics are captured using PowerShell's `Get-Date` and logged at the end of each `.log` file.
-- Backup duration is appended to `backupSQL.log`.
-- Restore duration is appended to `backupPSQL.log`.
-
-### Git-LFS Integration
-
-Large files such as `.sql` and `.log` files are tracked using Git-LFS to prevent bloating the repository size. If you clone this repository, ensure you have Git-LFS installed:
-
-```
-git lfs install
-git lfs pull
-```
+In order to execute a dump, navigate to the batch files folder with `cd '.\batch files\'` and run the provided batch script with: `.\dump_database.bat` and input your Postgres username (default is simply postgres) and Postgres password.
+Sample output: ![image](https://github.com/user-attachments/assets/a66b1f85-1af6-4b31-93c4-19293da0a375)
 
 ## Setting up the database
 
@@ -220,7 +168,7 @@ To set up the database schema, run the following command from the root:
 
 To generate the data for the database, navigate to the data generator files, and run data_generator.py, and then run data_generator_manages.py
 
-To insert all of the data into the tables, make sure to set the csv file folder to read for EVERYONE, then run the following command from batch files:
+To insert all of the data into the tables, open up file explorer and find the folder 'csv files'. Right-click on the folder, click on properties, then security, then edit EVERYONE so it can read. Apply and quit, then run the following command from batch files:
 `.\run_load_data.bat`
 
 To delete all of the from the table, run the following command from the root:
@@ -229,11 +177,8 @@ To delete all of the from the table, run the following command from the root:
 To delete the entire database, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/delete_database.sql"`
 
-## Running queries
+## Indexing
 
-To run all provided queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Queries.sql" > QueriesLog.log`
+psql -U postgres -d library_employees_db -f ".\sql files\Constraints.sql"
 
-In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" > TimedQueryLog.log
-`
+psql -U postgres -d library_employees_db -f ".\sql files\Drop_index.sql"
