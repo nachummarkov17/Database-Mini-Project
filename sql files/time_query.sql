@@ -3,7 +3,6 @@ DECLARE
     start_time TIMESTAMP;
     end_time TIMESTAMP;
     duration INTERVAL;
-    rows_affected INT; -- For UPDATE/DELETE
 BEGIN
     -- Record the start time
     start_time := clock_timestamp();

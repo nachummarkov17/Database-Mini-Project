@@ -194,19 +194,61 @@ To run provided queries, run the following command from the root:
 Feel free to comment out any number of queries to only run what you'd like.
 
 To run provided parametrized queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\ParamsQueries.sql" > ParamsQueriesLog.log`
+`psql -U postgres -d library_employees_db -f ".\sql files\ParamsQueries.sql" > ParamsQueries.log`
 Feel free to comment out any number of queries to only run what you'd like.
 
 In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" > TimedQueryLog.log`
 
-## Adding and testing constraints
+### Explanation of given queries
 
-Constraints can be added to the Constraints.sql file, and then applied from the root with the following command:
-`psql -U postgres -d library_employees_db -f ".\sql files\Constraints.sql"`
+Query #1:
+Explanation: This query retrieves the top 100 employees from the LibraryEmployee table, sorted by their salaries in descending order. It displays each employee's name, date of birth, and salary.
+Use Case: This is useful for identifying the highest-paid employees, which can help in analyzing salary distribution, performance rewards, or budget allocation.
 
-Constraints can be tested in the Test_Constraints.sql file, and ran with the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Test_Contraints.sql" > error_log.log 2>&1`
+Query 2:
+Explanation: This query calculates the average, minimum, and maximum salary of employees in the LibraryEmployee table.
+Use Case: Provides insights into salary distribution within the organization. It helps in understanding pay scale trends and ensuring equitable pay structures.
+
+Query 3:
+Explanation: This query retrieves all librarians with more than 10 years of experience, showing their names, expertise, and years of experience.
+Use Case: Useful for identifying experienced librarians who could be considered for leadership roles, mentorship programs, or specialized tasks.
+
+Query 4:
+Explanation: This query lists social media platforms with a distribution rating of 4 or higher, along with the marketer’s username and follower count managing them.
+Use Case: Helps identify highly effective marketers and platforms that could be leveraged for campaigns or outreach programs.
+
+Query 5:
+Explanation: This query increases the salary of employees whose contracts expire after January 1, 2028, and who earn less than 30,000, by 10%.
+Use Case: Addresses low compensation for long-term employees, helping retain talent and improving job satisfaction.
+
+Query 6:
+Explanation: This query ensures that all security personnel working in the "Archive" area have a clearance level of at least 5. If their level is below 5, it is updated.
+Use Case: Ensures compliance with security protocols, particularly in sensitive areas requiring higher clearance levels.
+
+Query 7:
+Explanation: This query deletes records of marketers who are not managing any social media platforms, as they have no corresponding entry in the Manages table.
+Use Case: Cleans up redundant records, ensuring that only active marketers managing platforms remain in the database.
+
+Query 8:
+Explanation: This query deletes all employees from the LibraryEmployee table whose salaries are less than 30,000.
+Use Case: This might reflect a scenario where the organization is restructuring, removing low-paid or part-time positions, or automating tasks.
+
+Query 9:
+Explanation: This query retrieves all employees who earn more than 90,000 and whose contracts expire before January 1, 2027. The results are sorted by salary in descending order.
+Use Case: Useful for identifying highly paid employees with contracts nearing expiration, enabling management to prioritize contract renewals, succession planning, or compensation reviews.
+
+Query 10:
+Explanation: This query lists marketers managing a specific social media platform (e.g., platform x), displaying their specialization, follower count, and target audience. Results are sorted by follower count in descending order.
+Use Case: Useful for identifying the most influential marketers managing a particular platform to focus promotional efforts or assign critical marketing campaigns.
+
+Query 11:
+Explanation: This query increases the years of experience of librarians in the "Children" section by 30%. It returns their IDs, section, and updated years of experience after the change.
+Use Case: Ensures that librarians in a specific department receive recognition for additional tenure or specialized training. Although the query mentions updating "salaries," it appears to be incrementing years of experience instead. If this is intentional, it might reflect a scenario where experience levels are recalibrated for promotions or benefit calculations.
+
+Query 12:
+Explanation: This query removes records of desk personnel assigned to "Workstation-97" on the 4th floor from the DeskPersonnel table. It returns their IDs, workstation details, desk numbers, and floor.
+Use Case: Useful during organizational restructuring, where specific workstations or locations are being decommissioned, or roles are being reassigned.
 
 ## Indexing
 
