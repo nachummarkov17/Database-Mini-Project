@@ -7,7 +7,7 @@ BEGIN
     -- Record the start time
     start_time := clock_timestamp();
     
-    -- Query Section
+    -- Query Section. Query #1: Retrieve a list of top 100 employees (LibraryEmployee) sorted by their salaries in descending order, showing their names, dates of birth, and salaries.
     PERFORM * FROM (
         SELECT Name, DateOfBirth, Salary
         FROM LibraryEmployee

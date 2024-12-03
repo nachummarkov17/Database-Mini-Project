@@ -257,3 +257,12 @@ In order to create indices, run the following file from the root:
 
 In order to remove the indices, run the following file from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\Drop_index.sql"`
+
+Indexing with query #1:
+| Attempt     | No Indexing        | Indexing          | Time Save        |
+|-------------|--------------------|-------------------|------------------|
+| Attempt 1   | 00:00:00.017159    | 00:00:00.001664   | 00:00:00.015495  |
+| Attempt 2   | 00:00:00.003359    | 00:00:00.001642   | 00:00:00.001717  |
+| Attempt 3   | 00:00:00.006182    | 00:00:00.004304   | 00:00:00.001878  |
+| **Average** | **00:00:00.008233** | **00:00:00.002537** | **00:00:00.005696** |
+
