@@ -189,12 +189,16 @@ $duration = $endTime - $startTime
 
 ## Running queries
 
-To run provided queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Queries.sql" > Queries.log`
+To run the provided queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\queries.sql" > Queries.log`
 Feel free to comment out any number of queries to only run what you'd like.
 
-To run provided parametrized queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\ParamsQueries.sql" > ParamsQueries.log`
+To run the provided parametrized queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\params_queries.sql" > ParamsQueries.log`
+Feel free to comment out any number of queries to only run what you'd like.
+
+To run the provided join queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\join_queries.sql" > join_queries.log`
 Feel free to comment out any number of queries to only run what you'd like.
 
 In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
@@ -274,19 +278,36 @@ In order to time a SQL query, copy the query of choice into time_query.sql follo
 
 **Use Case:** Useful during organizational restructuring, where specific workstations or locations are being decommissioned, or roles are being reassigned.
 
+**Query #13:**
+
+**Explanation:** This query retrieves the names of all librarians working in the "Children" section, along with their years of experience and salaries. The data is joined from the LibraryEmployee and Librarian tables.
+
+**Use Case:** Useful for identifying librarians with specialized experience in the "Children" section and their corresponding pay levels for budget or resource allocation.
+
+**Query #14:**
+
+**Explanation:** This query retrieves the names, roles, and clearance levels of all security personnel working in the "Archive" area, along with their corresponding salaries. It uses a join between the LibraryEmployee and Security tables.
+
+**Use Case:** Ensures that sensitive areas like the "Archive" are staffed with adequately compensated and qualified personnel, with clearance levels that meet protocol requirements.
+
+**Query #15:**
+
+**Explanation:** This query lists the usernames of marketers managing social media platforms with a DistributionRating of 4 or higher, along with their specialization and follower count. It uses a join between the Marketer, Manages, and SocialMedia tables.
+
+**Use Case:** Helps in identifying effective marketers and high-performing platforms to strategize marketing campaigns and resource allocation.
+
 ## Indexing
 
 In order to create indices, run the following file from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Constraints.sql"`
+`psql -U postgres -d library_employees_db -f ".\sql files\constraints.sql"`
 
 In order to remove the indices, run the following file from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Drop_index.sql"`
+`psql -U postgres -d library_employees_db -f ".\sql files\drop_index.sql"`
 
 **Indexing example with Query #1:**
-| Attempt     | No Indexing        | Indexing          | Time Save        |
+| Attempt | No Indexing | Indexing | Time Save |
 |-------------|--------------------|-------------------|------------------|
-| Attempt 1   | 00:00:00.017159    | 00:00:00.001664   | 00:00:00.015495  |
-| Attempt 2   | 00:00:00.003359    | 00:00:00.001642   | 00:00:00.001717  |
-| Attempt 3   | 00:00:00.006182    | 00:00:00.004304   | 00:00:00.001878  |
+| Attempt 1 | 00:00:00.017159 | 00:00:00.001664 | 00:00:00.015495 |
+| Attempt 2 | 00:00:00.003359 | 00:00:00.001642 | 00:00:00.001717 |
+| Attempt 3 | 00:00:00.006182 | 00:00:00.004304 | 00:00:00.001878 |
 | **Average** | **00:00:00.008233** | **00:00:00.002537** | **00:00:00.005696** |
-
