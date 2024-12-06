@@ -190,19 +190,19 @@ $duration = $endTime - $startTime
 ## Running queries
 
 To run the provided queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\queries.sql" > Queries.log`
+`psql -U postgres -d library_employees_db -f ".\sql files\queries.sql" *> Queries.log 2>&1`
 Feel free to comment out any number of queries to only run what you'd like.
 
 To run the provided parametrized queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\params_queries.sql" > ParamsQueries.log`
+`psql -U postgres -d library_employees_db -f ".\sql files\params_queries.sql" *> ParamsQueries.log 2>&1`
 Feel free to comment out any number of queries to only run what you'd like.
 
 To run the provided join queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\join_queries.sql" > join_queries.log`
+`psql -U postgres -d library_employees_db -f ".\sql files\join_queries.sql" *> join_queries.log 2>&1`
 Feel free to comment out any number of queries to only run what you'd like.
 
 In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" > TimedQueryLog.log`
+`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" *> TimedQueryLog.log 2>&1`
 
 ### Explanation of given queries
 
@@ -311,3 +311,39 @@ In order to remove the indices, run the following file from the root:
 | Attempt 2 | 00:00:00.003359 | 00:00:00.001642 | 00:00:00.001717 |
 | Attempt 3 | 00:00:00.006182 | 00:00:00.004304 | 00:00:00.001878 |
 | **Average** | **00:00:00.008233** | **00:00:00.002537** | **00:00:00.005696** |
+
+## Views
+
+Views offer a way to tailor to different user sub-groups. Keep in the mind that a view is a cursor that points to the respective records in the base tables. Any manipulations will affect the original tables they draw records from.
+
+In order to create the provided views, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\create_views.sql" *> create_views.log 2>&1`
+
+In order to run the provided select, insert, update, and delete queries for the created views, the run the following command form the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\view_queries.sql" *> view_queries.log 2>&1`
+
+## Explanation of Operations:
+
+### LibrarianExpertise
+
+- **INSERT**: Adds a librarian with their expertise and employee data.
+- **UPDATE**: Modifies a librarian's expertise field.
+- **DELETE**: Removes a librarian and their associated employee record.
+
+### SecurityClearance
+
+- **INSERT**: Adds a security personnel with clearance details.
+- **UPDATE**: Changes the clearance level for a specific personnel.
+- **DELETE**: Removes a security record and its associated employee.
+
+### MarketerPerformance
+
+- **INSERT**: Adds a marketer, assigns them to a platform, and includes details about their audience.
+- **UPDATE**: Adjusts follower count for a marketer.
+- **DELETE**: Removes a marketer and their related platform assignments.
+
+### EmployeeContractDetails
+
+- **INSERT**: Adds a new employee with salary and contract details.
+- **UPDATE**: Extends the expiration date of an employee's contract.
+- **DELETE**: Removes an employee record.
