@@ -191,7 +191,7 @@ $duration = $endTime - $startTime
 
 To run the provided queries, run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\queries.sql" *> Queries.log 2>&1`
-Feel free to comment out any number of queries to only run what you'd like.
+Feel free to comment out any number of queries to only run what you'd like. (Functions have been added in order to make the queries more efficient so they will need to be created, instructions below, before all the queries can be run)
 
 To run the provided parametrized queries, run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\params_queries.sql" *> ParamsQueries.log 2>&1`
@@ -322,7 +322,7 @@ In order to create the provided views, run the following command from the root:
 In order to run the provided select, insert, update, and delete queries for the created views, the run the following command form the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\view_queries.sql" *> view_queries.log 2>&1`
 
-## Explanation of Operations:
+## Explanation of View Operations:
 
 ### LibrarianExpertise
 
@@ -347,3 +347,18 @@ In order to run the provided select, insert, update, and delete queries for the 
 - **INSERT**: Adds a new employee with salary and contract details.
 - **UPDATE**: Extends the expiration date of an employee's contract.
 - **DELETE**: Removes an employee record.
+
+## Functions
+
+In order to create the functions that the queries in queries.sql use, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\functions.sql"`
+
+### Explanation of the given functions
+
+**Function #1:** This function retrieves the top N employees sorted by their salary in descending order. It returns their names, dates of birth, and salaries.
+
+**Function #2:** This function calculates the average, minimum, and maximum salaries for employees in the LibraryEmployee table.
+
+**Function #3** This function retrieves librarians with expertise and years of experience greater than a specified threshold. It joins the Librarian and LibraryEmployee tables to provide additional employee details.
+
+**Function #4:** This function retrieves social media platforms managed by marketers where the platform's distribution rating meets or exceeds a specified threshold. It joins the Manages and SocialMedia tables to provide details about the marketer and the platform.
