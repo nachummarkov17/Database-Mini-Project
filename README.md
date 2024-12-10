@@ -357,7 +357,7 @@ In order to visualize some of the data that the queries fetch, a python script c
 ![image](https://github.com/user-attachments/assets/fc737392-072b-4324-abf6-72c4604faa19)
 
 #### Description:
-This **bar chart** shows the distribution of **years of experience** among librarians in the History section, grouped by their areas of expertise (e.g., Acquisition, Cataloging, Customer Support). The query fetches the expertise of the librarians working in the History section, and their years of experience in that area. 
+This **bar graph** shows the distribution of **years of experience** among librarians in the History section, grouped by their areas of expertise (e.g., Acquisition, Cataloging, Customer Support). The query fetches the expertise of the librarians working in the History section, and their years of experience in that area. 
 
 ### 2. **Salary Distribution for Employees)**
 
