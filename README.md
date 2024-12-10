@@ -348,6 +348,25 @@ In order to run the provided select, insert, update, and delete queries for the 
 - **UPDATE**: Extends the expiration date of an employee's contract.
 - **DELETE**: Removes an employee record.
 
+## Visualizations
+
+In order to visualize some of the data that the queries fetch, a python script called visualizations.py has been provided in the python files folder. Simply navigate there and the run the file to see the provided visualizations. 
+
+### 1. **Expertise Distribution in the History Section**
+
+![image](https://github.com/user-attachments/assets/fc737392-072b-4324-abf6-72c4604faa19)
+
+#### Description:
+This **bar chart** shows the distribution of **years of experience** among librarians in the History section, grouped by their areas of expertise (e.g., Acquisition, Cataloging, Customer Support). The query fetches the expertise of the librarians working in the History section, and their years of experience in that area. 
+
+### 2. **Salary Distribution for Employees)**
+
+![image](https://github.com/user-attachments/assets/9d1c6ce2-8623-485c-aafc-28eeb72698bc)
+
+#### Description:
+
+This **pie chart** illustrates the distribution of employees grouped by salary ranges (e.g., 20k-30k, 50k-60k), limited to employees with contracts expiring before 2028. The query has been modified slightly to return salary ranges for clarity in the pie chart. It fetches salary ranges (20k-30k, 30k-40k, etc.) for employees earning at least 20,000 and whose contracts are expiring before 2028. 
+
 ## Functions
 
 In order to create the functions that the queries in queries.sql use, run the following command from the root:
@@ -362,3 +381,4 @@ In order to create the functions that the queries in queries.sql use, run the fo
 **Function #3** This function retrieves librarians with expertise and years of experience greater than a specified threshold. It joins the Librarian and LibraryEmployee tables to provide additional employee details.
 
 **Function #4:** This function retrieves social media platforms managed by marketers where the platform's distribution rating meets or exceeds a specified threshold. It joins the Manages and SocialMedia tables to provide details about the marketer and the platform.
+
