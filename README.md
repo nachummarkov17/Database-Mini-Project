@@ -161,7 +161,7 @@ To create the database, run the following command from the root:
 To set up the database schema, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/create_schema.sql"`
 
-To generate the data for the database, navigate to the data generator files, and run data_generator.py, and then run data_generator_manages.py
+To generate the data for the database, navigate to the python files, and run data_generator.py, and then run data_generator_manages.py
 
 To insert all of the data into the tables, open up file explorer and find the folder 'csv files'. Right-click on the folder, click on properties, then security, then edit EVERYONE so it can read. Apply and quit, then run the following command from batch files:
 `.\run_load_data.bat`
