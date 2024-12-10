@@ -33,8 +33,7 @@ def fetch_data(query):
 librarian_query = """
 SELECT Expertise, YearsOfExperience
 FROM LibrarianExpertise
-WHERE Section = 'History'
-LIMIT 100;
+WHERE Section = 'History';
 """
 
 employee_query = """
@@ -57,40 +56,40 @@ ORDER BY SalaryRange;
 """
 
 # Fetch data for LibrarianExpertise
-# df_librarian = fetch_data(librarian_query)
+df_librarian = fetch_data(librarian_query)
 
-# if df_librarian is not None:
-#     # Calculate average years of experience and group sizes
-#     df_summary = (
-#         df_librarian.groupby("expertise")["yearsofexperience"]
-#         .agg(["mean", "count"])
-#         .reset_index()
-#         .rename(columns={"mean": "avg_experience", "count": "group_size"})
-#     )
+if df_librarian is not None:
+    # Calculate average years of experience and group sizes
+    df_summary = (
+        df_librarian.groupby("expertise")["yearsofexperience"]
+        .agg(["mean", "count"])
+        .reset_index()
+        .rename(columns={"mean": "avg_experience", "count": "group_size"})
+    )
 
-#     # Bar graph: Average Years of Experience with group sizes as labels
-#     plt.figure(figsize=(8, 6))
-#     bars = plt.bar(
-#         df_summary["expertise"], df_summary["avg_experience"], color="skyblue"
-#     )
-#     plt.title("Average Years of Experience in History Section", fontsize=14)
-#     plt.xlabel("Expertise", fontsize=12)
-#     plt.ylabel("Average Years of Experience", fontsize=12)
-#     plt.xticks(rotation=15)
+    # Bar graph: Average Years of Experience with group sizes as labels
+    plt.figure(figsize=(8, 6))
+    bars = plt.bar(
+        df_summary["expertise"], df_summary["avg_experience"], color="skyblue"
+    )
+    plt.title("Average Years of Experience in History Section", fontsize=14)
+    plt.xlabel("Expertise", fontsize=12)
+    plt.ylabel("Average Years of Experience", fontsize=12)
+    plt.xticks(rotation=15)
 
-#     # Add group size labels above bars
-#     for bar, size in zip(bars, df_summary["group_size"]):
-#         height = bar.get_height()
-#         plt.text(
-#             bar.get_x() + bar.get_width() / 2,
-#             height + 0.5,
-#             f"{size}",
-#             ha="center",
-#             fontsize=10,
-#         )
+    # Add group size labels above bars
+    for bar, size in zip(bars, df_summary["group_size"]):
+        height = bar.get_height()
+        plt.text(
+            bar.get_x() + bar.get_width() / 2,
+            height + 0.5,
+            f"{size}",
+            ha="center",
+            fontsize=10,
+        )
 
-#     plt.tight_layout()
-#     plt.show()
+    plt.tight_layout()
+    plt.show()
 
 # Fetch data for EmployeeContractDetails
 df_employee = fetch_data(employee_query)
