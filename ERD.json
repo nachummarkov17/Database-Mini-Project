@@ -1,143 +1,680 @@
-[{
-  "version": "1.0",
-  "image": {
-    "name": "/home/videosdownloader/public_html/image/public/uploadt/image.png",
-    "baseName": "image.png",
-    "format": "json",
-    "formatDescription": "json",
-    "mimeType": "application/json",
-    "class": "DirectClass",
-    "geometry": {
-      "width": 1431,
-      "height": 755,
-      "x": 0,
-      "y": 0
-    },
-    "units": "Undefined",
-    "type": "GrayscaleAlpha",
-    "baseType": "Undefined",
-    "endianness": "Undefined",
-    "colorspace": "sRGB",
-    "depth": 8,
-    "baseDepth": 8,
-    "channelDepth": {
-      "alpha": 1,
-      "red": 8,
-      "green": 8,
-      "blue": 1
-    },
-    "pixels": 4321620,
-    "imageStatistics": {
-      "Overall": {
-        "min": 0,
-        "max": 255,
-        "mean": 252.143,
-        "median": 255,
-        "standardDeviation": 4850.03,
-        "kurtosis": 81.3904,
-        "skewness": -8.74759,
-        "entropy": 0.0382449
+﻿{
+  "version": 2,
+  "www": "erdplus.com",
+  "shapes": [
+    {
+      "type": "Entity",
+      "details": {
+        "name": "Library employee",
+        "type": "super",
+        "x": 717,
+        "y": 235,
+        "isDisjointed": true,
+        "isTotalSpecialization": true,
+        "isSubtype": false,
+        "supertypeEntityId": null,
+        "id": 1
       }
     },
-    "channelStatistics": {
-      "alpha": {
-        "min": 255,
-        "max": 255,
-        "mean": 255,
-        "median": 255,
-        "standardDeviation": 0,
-        "kurtosis": 1.6384e+52,
-        "skewness": 9.375e+35,
-        "entropy": 0
-      },
-      "red": {
-        "min": 0,
-        "max": 255,
-        "mean": 251.19,
-        "median": 255,
-        "standardDeviation": 6466.7,
-        "kurtosis": 59.8719,
-        "skewness": -7.52772,
-        "entropy": 0.0509932
-      },
-      "green": {
-        "min": 0,
-        "max": 255,
-        "mean": 251.19,
-        "median": 255,
-        "standardDeviation": 6466.7,
-        "kurtosis": 59.8719,
-        "skewness": -7.52772,
-        "entropy": 0.0509932
-      },
-      "blue": {
-        "min": 0,
-        "max": 255,
-        "mean": 251.19,
-        "median": 255,
-        "standardDeviation": 6466.7,
-        "kurtosis": 59.8719,
-        "skewness": -7.52772,
-        "entropy": 0.0509932
+    {
+      "type": "Entity",
+      "details": {
+        "name": "Store operator",
+        "type": "regular",
+        "x": 290,
+        "y": 311,
+        "isDisjointed": true,
+        "isTotalSpecialization": true,
+        "isSubtype": true,
+        "supertypeEntityId": 1,
+        "id": 5
       }
     },
-    "renderingIntent": "Perceptual",
-    "gamma": 0.45455,
-    "chromaticity": {
-      "redPrimary": {
-        "x": 0.64,
-        "y": 0.33
-      },
-      "greenPrimary": {
-        "x": 0.3,
-        "y": 0.6
-      },
-      "bluePrimary": {
-        "x": 0.15,
-        "y": 0.06
-      },
-      "whitePrimary": {
-        "x": 0.3127,
-        "y": 0.329
+    {
+      "type": "Entity",
+      "details": {
+        "name": "Security",
+        "type": "regular",
+        "x": 430,
+        "y": 605,
+        "isDisjointed": true,
+        "isTotalSpecialization": true,
+        "isSubtype": true,
+        "supertypeEntityId": 1,
+        "id": 9
       }
     },
-    "matteColor": "#BDBDBD",
-    "backgroundColor": "#FFFFFF",
-    "borderColor": "#DFDFDF",
-    "transparentColor": "#00000000",
-    "interlace": "None",
-    "intensity": "Undefined",
-    "compose": "Over",
-    "pageGeometry": {
-      "width": 1431,
-      "height": 755,
-      "x": 0,
-      "y": 0
+    {
+      "type": "Entity",
+      "details": {
+        "name": "Librarian",
+        "type": "regular",
+        "x": 317,
+        "y": 473,
+        "isDisjointed": true,
+        "isTotalSpecialization": true,
+        "isSubtype": true,
+        "supertypeEntityId": 1,
+        "id": 11
+      }
     },
-    "dispose": "Undefined",
-    "iterations": 0,
-    "compression": "Zip",
-    "orientation": "Undefined",
-    "properties": {
-      "date:create": "2024-11-20T13:43:35+00:00",
-      "date:modify": "2024-11-20T13:43:35+00:00",
-      "png:cHRM": "chunk was found (see Chromaticity, above)",
-      "png:gAMA": "gamma=0.45455 (See Gamma, above)",
-      "png:IHDR.bit-depth-orig": "8",
-      "png:IHDR.bit_depth": "8",
-      "png:IHDR.color-type-orig": "6",
-      "png:IHDR.color_type": "6 (RGBA)",
-      "png:IHDR.interlace_method": "0 (Not interlaced)",
-      "png:IHDR.width,height": "1431, 755",
-      "png:sRGB": "intent=0 (Perceptual Intent)",
-      "signature": "83c07d94775e13df0585ec6ef24a63eb0d6e81c4e4072863715193d5fb9dc48b"
+    {
+      "type": "Entity",
+      "details": {
+        "name": "Marketer",
+        "type": "regular",
+        "x": 964,
+        "y": 445,
+        "isDisjointed": true,
+        "isTotalSpecialization": true,
+        "isSubtype": true,
+        "supertypeEntityId": 1,
+        "id": 13
+      }
     },
-    "tainted": false,
-    "filesize": "112495B",
-    "numberPixels": "1.08041M",
-    "pixelsPerSecond": "19.6042MB",
-    "userTime": "0.080u",
-    "elapsedTime": "0:01.055",
-    "version": "ImageMagick 7.0.10-58 Q16 x86_64 2021-01-14 https://imagemagick.org"
-  }
-}]
+    {
+      "type": "Entity",
+      "details": {
+        "name": "Desk personnel",
+        "type": "regular",
+        "x": 702,
+        "y": 655,
+        "isDisjointed": true,
+        "isTotalSpecialization": true,
+        "isSubtype": true,
+        "supertypeEntityId": 1,
+        "id": 15
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "ID",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": true,
+        "x": 532,
+        "y": 124,
+        "id": 17
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Name",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 616,
+        "y": 85,
+        "id": 19
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Date of birth",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 740,
+        "y": 73,
+        "id": 21
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Salary",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 863,
+        "y": 91,
+        "id": 23
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Expiration of contract",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 957,
+        "y": 146,
+        "id": 27
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Section",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 206,
+        "y": 445,
+        "id": 29
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Store type",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 187,
+        "y": 249,
+        "id": 33
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Area",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 400,
+        "y": 536,
+        "id": 35
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Role",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 308,
+        "y": 586,
+        "id": 37
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Specialisation",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 995,
+        "y": 343,
+        "id": 39
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Workstation",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": true,
+        "x": 630,
+        "y": 724,
+        "id": 41
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Clearence level",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 336,
+        "y": 676,
+        "id": 54
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Store name",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": true,
+        "x": 416,
+        "y": 253,
+        "id": 59
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Store location",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 302,
+        "y": 222,
+        "id": 61
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Desk number",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": true,
+        "x": 576,
+        "y": 653,
+        "id": 63
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Expertise",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 413,
+        "y": 386,
+        "id": 67
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Floor",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": true,
+        "x": 765,
+        "y": 725,
+        "id": 69
+      }
+    },
+    {
+      "type": "Entity",
+      "details": {
+        "name": "social media",
+        "type": "regular",
+        "x": 1385,
+        "y": 456.5,
+        "isDisjointed": true,
+        "isTotalSpecialization": true,
+        "isSubtype": false,
+        "supertypeEntityId": null,
+        "id": 75
+      }
+    },
+    {
+      "type": "Relationship",
+      "details": {
+        "name": "Manages",
+        "isIdentifying": false,
+        "x": 1160,
+        "y": 469.5,
+        "slots": [
+          {
+            "slotIndex": 0,
+            "minimum": "",
+            "maximum": "",
+            "participation": "unspecified",
+            "cardinality": "many",
+            "role": "",
+            "entityId": 13
+          },
+          {
+            "slotIndex": 1,
+            "minimum": "",
+            "maximum": "",
+            "participation": "unspecified",
+            "cardinality": "one",
+            "role": "",
+            "entityId": 75
+          }
+        ],
+        "id": 76
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Username",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": true,
+        "x": 1164,
+        "y": 543.5,
+        "id": 77
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Follower count",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 1055,
+        "y": 508.5,
+        "id": 81
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Platform",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": true,
+        "x": 1465,
+        "y": 368.5,
+        "id": 83
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Distribution rating",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 1336,
+        "y": 378.5,
+        "id": 85
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Target audience",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 1265,
+        "y": 507.5,
+        "id": 89
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Certification",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 1113,
+        "y": 348,
+        "id": 93
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Creative Skill",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 878,
+        "y": 332,
+        "id": 95
+      }
+    },
+    {
+      "type": "Attribute",
+      "details": {
+        "name": "Years of Experience",
+        "isDerived": false,
+        "isMultivalued": false,
+        "isOptional": false,
+        "isComposite": false,
+        "isUnique": false,
+        "x": 298,
+        "y": 393,
+        "id": 97
+      }
+    }
+  ],
+  "connectors": [
+    {
+      "type": "Connector",
+      "details": { "isSupertypeConnector": true, "id": 6 },
+      "source": 5,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "isSupertypeConnector": true, "id": 10 },
+      "source": 9,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "isSupertypeConnector": true, "id": 12 },
+      "source": 11,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "isSupertypeConnector": true, "id": 14 },
+      "source": 13,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "isSupertypeConnector": true, "id": 16 },
+      "source": 15,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 42 },
+      "source": 17,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 43 },
+      "source": 19,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 44 },
+      "source": 21,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 45 },
+      "source": 23,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 46 },
+      "source": 27,
+      "destination": 1
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 47 },
+      "source": 29,
+      "destination": 11
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 49 },
+      "source": 33,
+      "destination": 5
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 50 },
+      "source": 35,
+      "destination": 9
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 51 },
+      "source": 37,
+      "destination": 9
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 52 },
+      "source": 39,
+      "destination": 13
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 53 },
+      "source": 41,
+      "destination": 15
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 55 },
+      "source": 54,
+      "destination": 9
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 60 },
+      "source": 59,
+      "destination": 5
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 62 },
+      "source": 61,
+      "destination": 5
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 64 },
+      "source": 63,
+      "destination": 15
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 68 },
+      "source": 67,
+      "destination": 11
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 70 },
+      "source": 69,
+      "destination": 15
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 78 },
+      "source": 77,
+      "destination": 76
+    },
+    {
+      "type": "RelationshipConnector",
+      "details": { "slotIndex": 0, "id": 79 },
+      "source": 13,
+      "destination": 76
+    },
+    {
+      "type": "RelationshipConnector",
+      "details": { "slotIndex": 1, "id": 80 },
+      "source": 75,
+      "destination": 76
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 82 },
+      "source": 81,
+      "destination": 76
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 84 },
+      "source": 83,
+      "destination": 75
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 86 },
+      "source": 85,
+      "destination": 75
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 90 },
+      "source": 89,
+      "destination": 76
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 94 },
+      "source": 93,
+      "destination": 13
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 96 },
+      "source": 95,
+      "destination": 13
+    },
+    {
+      "type": "Connector",
+      "details": { "id": 98 },
+      "source": 97,
+      "destination": 11
+    }
+  ],
+  "width": 2000,
+  "height": 1000
+}
