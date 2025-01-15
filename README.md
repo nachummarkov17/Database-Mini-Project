@@ -387,11 +387,14 @@ In order to create the functions that the queries in queries.sql use, run the fo
 To successfully integrate another database into ours, we began by planning the ERDs. 
 **Original ERD:**
 ![ERD](https://github.com/user-attachments/assets/95a2267b-240c-466c-9d5a-0a7a22d8659e)
+---
 
 **Partner ERD:**
 ![D J ERD](https://github.com/user-attachments/assets/6de0eebc-bb33-4795-9240-04c932f658ef)
+---
 
 **Combined ERD:**
 ![Combined ERD](https://github.com/user-attachments/assets/7b2d9a74-19f8-44e8-a517-5add2b9dbe8b)
+---
 
 **Explanation of the integration:** The integrated ERD focuses on book archives and includes a new employee type responsible for managing the system, referred to as the "Conservator." We incorporated the Conservator into our existing Library Employee supertype, creating a unified structure that enables seamless integration. This approach simplifies writing queries tailored to specific subgroup requirements and ensures a consistent database design across both systems.
