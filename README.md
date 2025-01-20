@@ -394,11 +394,11 @@ To successfully integrate another database into ours, we began by planning the E
 ---
 
 **Combined ERD:**
-![Combined ERD](https://github.com/user-attachments/assets/7b2d9a74-19f8-44e8-a517-5add2b9dbe8b)
+![Combined ERD](https://github.com/user-attachments/assets/505caf61-28af-4269-852f-b1a56ddcb4a4)
 ---
 
 **Combined DSD:**
-![Combined DSD](https://github.com/user-attachments/assets/e4822b0c-3947-4034-af5c-9310112cd48d)
+![Combined DSD](https://github.com/user-attachments/assets/a6f56c89-e182-43bc-8fbc-baa2ce9dfc31)
 ---
 
 **Explanation of the integration:** The integrated ERD focuses on book archives and includes a new employee type responsible for managing the system, referred to as the "Conservator." We incorporated the Conservator into our existing Library Employee supertype, creating a unified structure that enables seamless integration. This approach simplifies writing queries tailored to specific subgroup requirements and ensures a consistent database design across both systems.
