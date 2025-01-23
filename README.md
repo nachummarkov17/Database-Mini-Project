@@ -161,12 +161,12 @@ To create the database, run the following command from the root:
 To set up the database schema, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/create_schema.sql"`
 
-To generate the data for the database, navigate to the python files, and run data_generator.py, and then run data_generator_manages.py
+To generate the data for the database, navigate to the python files, and run data_generator.py, then data_generator_manages.py, and finally generate_conservator.py
 
 To insert all of the data into the tables, open up file explorer and find the folder 'csv files'. Right-click on the folder, click on properties, then security, then edit EVERYONE so it can read. Apply and quit, then run the following command from batch files:
 `.\run_load_data.bat`
 
-To delete all of the from the table, run the following command from the root:
+To delete all of the from the tables, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/delete_data.sql"`
 
 To delete the entire database, run the following command from the root:
@@ -350,14 +350,15 @@ In order to run the provided select, insert, update, and delete queries for the 
 
 ## Visualizations
 
-In order to visualize some of the data that the queries fetch, a python script called visualizations.py has been provided in the python files folder. Simply navigate there and the run the file to see the provided visualizations. 
+In order to visualize some of the data that the queries fetch, a python script called visualizations.py has been provided in the python files folder. Simply navigate there and the run the file to see the provided visualizations.
 
 ### 1. **Expertise Distribution in the History Section**
 
 ![image](https://github.com/user-attachments/assets/fc737392-072b-4324-abf6-72c4604faa19)
 
 #### Description:
-This **bar graph** shows the distribution of **years of experience** among librarians in the History section, grouped by their areas of expertise (e.g., Acquisition, Cataloging, Customer Support). The query fetches the expertise of the librarians working in the History section, and their years of experience in that area. 
+
+This **bar graph** shows the distribution of **years of experience** among librarians in the History section, grouped by their areas of expertise (e.g., Acquisition, Cataloging, Customer Support). The query fetches the expertise of the librarians working in the History section, and their years of experience in that area.
 
 ### 2. **Salary Distribution for Employees)**
 
@@ -365,7 +366,7 @@ This **bar graph** shows the distribution of **years of experience** among libra
 
 #### Description:
 
-This **pie chart** illustrates the distribution of employees grouped by salary ranges (e.g., 20k-30k, 50k-60k), limited to employees with contracts expiring before 2028. The query has been modified slightly to return salary ranges for clarity in the pie chart. It fetches salary ranges (20k-30k, 30k-40k, etc.) for employees earning at least 20,000 and whose contracts are expiring before 2028. 
+This **pie chart** illustrates the distribution of employees grouped by salary ranges (e.g., 20k-30k, 50k-60k), limited to employees with contracts expiring before 2028. The query has been modified slightly to return salary ranges for clarity in the pie chart. It fetches salary ranges (20k-30k, 30k-40k, etc.) for employees earning at least 20,000 and whose contracts are expiring before 2028.
 
 ## Functions
 
@@ -384,21 +385,25 @@ In order to create the functions that the queries in queries.sql use, run the fo
 
 ## Integrating the database with another
 
-To successfully integrate another database into ours, we began by planning the ERDs. 
+To successfully integrate another database into ours, we began by planning the ERDs.
 **Original ERD:**
 ![ERD](https://github.com/user-attachments/assets/95a2267b-240c-466c-9d5a-0a7a22d8659e)
+
 ---
 
 **Partner ERD:**
 ![D J ERD](https://github.com/user-attachments/assets/6de0eebc-bb33-4795-9240-04c932f658ef)
+
 ---
 
 **Combined ERD:**
 ![Combined ERD](https://github.com/user-attachments/assets/505caf61-28af-4269-852f-b1a56ddcb4a4)
+
 ---
 
 **Combined DSD:**
 ![Combined DSD](https://github.com/user-attachments/assets/a6f56c89-e182-43bc-8fbc-baa2ce9dfc31)
+
 ---
 
 **Explanation of the integration:** The integrated ERD focuses on book archives and includes a new employee type responsible for managing the system, referred to as the "Conservator." We incorporated the Conservator into our existing Library Employee supertype, creating a unified structure that enables seamless integration. This approach simplifies writing queries tailored to specific subgroup requirements and ensures a consistent database design across both systems.
