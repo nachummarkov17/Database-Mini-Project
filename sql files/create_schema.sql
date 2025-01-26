@@ -15,7 +15,7 @@ CREATE TABLE StoreOperator (
     StoreType VARCHAR(255) NOT NULL,
     StoreName VARCHAR(255) UNIQUE NOT NULL,
     StoreLocation VARCHAR(255) NOT NULL,
-    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID)
+    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID) ON DELETE CASCADE
 );
 
 -- Create Librarian Table
@@ -24,7 +24,7 @@ CREATE TABLE Librarian (
     Section VARCHAR(255) NOT NULL,
     Expertise VARCHAR(255) NOT NULL,
     YearsOfExperience INT NOT NULL,
-    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID)
+    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID) ON DELETE CASCADE
 );
 
 -- Create Security Table
@@ -33,7 +33,7 @@ CREATE TABLE Security (
     Area VARCHAR(255) NOT NULL,
     Role VARCHAR(255) NOT NULL,
     ClearanceLevel INT NOT NULL CHECK (ClearanceLevel >= 1 AND ClearanceLevel <= 5),
-    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID)
+    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID) ON DELETE CASCADE
 );
 
 -- Create Desk Personnel Table
@@ -42,7 +42,7 @@ CREATE TABLE DeskPersonnel (
     Workstation VARCHAR(255) NOT NULL,
     DeskNumber VARCHAR(255) NOT NULL,
     Floor INT NOT NULL,
-    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID),
+    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID) ON DELETE CASCADE,
     UNIQUE (Workstation, DeskNumber, Floor) -- Ensures the tuple is unique
 );
 
@@ -52,7 +52,7 @@ CREATE TABLE Marketer (
     Specialisation VARCHAR(255) NOT NULL,
     Certification VARCHAR(255) NOT NULL,
     CreativeSkill VARCHAR(255) NOT NULL,
-    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID)
+    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID) ON DELETE CASCADE
 );
 
 -- Create Social Media Table
@@ -79,7 +79,7 @@ CREATE TABLE Conservator
 (
     ID INT PRIMARY KEY,
     Duty VARCHAR(255) NOT NULL,
-    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID)
+    FOREIGN KEY (ID) REFERENCES LibraryEmployee(ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Book
@@ -101,8 +101,8 @@ CREATE TABLE Disposal
     Book_ID BIGINT NOT NULL,
     Conservator_ID INT NOT NULL,
     PRIMARY KEY (Disposal_ID),
-    FOREIGN KEY (Book_ID) REFERENCES Book(Book_ID),
-    FOREIGN KEY (Conservator_ID) REFERENCES Conservator(ID)
+    FOREIGN KEY (Book_ID) REFERENCES Book(Book_ID) ON DELETE CASCADE,
+    FOREIGN KEY (Conservator_ID) REFERENCES Conservator(ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Archive_
@@ -122,8 +122,8 @@ CREATE TABLE Upkeep
     Conservator_ID INT NOT NULL,
     Book_ID BIGINT NOT NULL,
     PRIMARY KEY (Upkeep_ID),
-    FOREIGN KEY (Conservator_ID) REFERENCES Conservator(ID),
-    FOREIGN KEY (Book_ID) REFERENCES Book(Book_ID)
+    FOREIGN KEY (Conservator_ID) REFERENCES Conservator(ID) ON DELETE CASCADE,
+    FOREIGN KEY (Book_ID) REFERENCES Book(Book_ID) ON DELETE CASCADE
 );
 
 CREATE TABLE Archival_Assignment
@@ -137,8 +137,8 @@ CREATE TABLE Archival_Assignment
     Book_ID BIGINT NOT NULL,
     New_Archive_Room INT NOT NULL,
     PRIMARY KEY (Assignment_ID),
-    FOREIGN KEY (Conservator_ID) REFERENCES Conservator(ID),
-    FOREIGN KEY (Book_ID) REFERENCES Book(Book_ID),
+    FOREIGN KEY (Conservator_ID) REFERENCES Conservator(ID) ON DELETE CASCADE,
+    FOREIGN KEY (Book_ID) REFERENCES Book(Book_ID) ON DELETE CASCADE,
     FOREIGN KEY (New_Archive_Room) REFERENCES Archive_(Archive_Number)
 );
 
@@ -147,7 +147,7 @@ CREATE TABLE Shelf
     Shelf_Number INT NOT NULL,
     Archive_Number INT NOT NULL,
     PRIMARY KEY (Shelf_Number, Archive_Number),
-    FOREIGN KEY (Archive_Number) REFERENCES Archive_(Archive_Number)
+    FOREIGN KEY (Archive_Number) REFERENCES Archive_(Archive_Number) ON DELETE CASCADE
 );
 
 
