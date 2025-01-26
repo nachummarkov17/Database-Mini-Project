@@ -161,12 +161,12 @@ To create the database, run the following command from the root:
 To set up the database schema, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/create_schema.sql"`
 
-To generate the data for the database, navigate to the data generator files, and run data_generator.py, and then run data_generator_manages.py
+To generate the data for the database, navigate to the python files, and run data_generator.py, then data_generator_manages.py, and finally generate_conservator.py
 
 To insert all of the data into the tables, open up file explorer and find the folder 'csv files'. Right-click on the folder, click on properties, then security, then edit EVERYONE so it can read. Apply and quit, then run the following command from batch files:
 `.\run_load_data.bat`
 
-To delete all of the from the table, run the following command from the root:
+To delete all of the from the tables, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/delete_data.sql"`
 
 To delete the entire database, run the following command from the root:
@@ -189,16 +189,20 @@ $duration = $endTime - $startTime
 
 ## Running queries
 
-To run provided queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Queries.sql" > Queries.log`
+To run the provided queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\queries.sql" *> Queries.log 2>&1`
+Feel free to comment out any number of queries to only run what you'd like. (Functions have been added in order to make the queries more efficient so they will need to be created, instructions below, before all the queries can be run)
+
+To run the provided parametrized queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\params_queries.sql" *> ParamsQueries.log 2>&1`
 Feel free to comment out any number of queries to only run what you'd like.
 
-To run provided parametrized queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\ParamsQueries.sql" > ParamsQueries.log`
+To run the provided join queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\join_queries.sql" *> join_queries.log 2>&1`
 Feel free to comment out any number of queries to only run what you'd like.
 
 In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" > TimedQueryLog.log`
+`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" *> TimedQueryLog.log 2>&1`
 
 ### Explanation of given queries
 
@@ -274,19 +278,159 @@ In order to time a SQL query, copy the query of choice into time_query.sql follo
 
 **Use Case:** Useful during organizational restructuring, where specific workstations or locations are being decommissioned, or roles are being reassigned.
 
+**Query #13:**
+
+**Explanation:** This query retrieves the names of all librarians working in the "Children" section, along with their years of experience and salaries. The data is joined from the LibraryEmployee and Librarian tables.
+
+**Use Case:** Useful for identifying librarians with specialized experience in the "Children" section and their corresponding pay levels for budget or resource allocation.
+
+**Query #14:**
+
+**Explanation:** This query retrieves the names, roles, and clearance levels of all security personnel working in the "Archive" area, along with their corresponding salaries. It uses a join between the LibraryEmployee and Security tables.
+
+**Use Case:** Ensures that sensitive areas like the "Archive" are staffed with adequately compensated and qualified personnel, with clearance levels that meet protocol requirements.
+
+**Query #15:**
+
+**Explanation:** This query lists the usernames of marketers managing social media platforms with a DistributionRating of 4 or higher, along with their specialization and follower count. It uses a join between the Marketer, Manages, and SocialMedia tables.
+
+**Use Case:** Helps in identifying effective marketers and high-performing platforms to strategize marketing campaigns and resource allocation.
+
+**Query #16:**
+
+
 ## Indexing
 
 In order to create indices, run the following file from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Constraints.sql"`
+`psql -U postgres -d library_employees_db -f ".\sql files\constraints.sql"`
 
 In order to remove the indices, run the following file from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\Drop_index.sql"`
+`psql -U postgres -d library_employees_db -f ".\sql files\drop_index.sql"`
 
 **Indexing example with Query #1:**
-| Attempt     | No Indexing        | Indexing          | Time Save        |
+| Attempt | No Indexing | Indexing | Time Save |
 |-------------|--------------------|-------------------|------------------|
-| Attempt 1   | 00:00:00.017159    | 00:00:00.001664   | 00:00:00.015495  |
-| Attempt 2   | 00:00:00.003359    | 00:00:00.001642   | 00:00:00.001717  |
-| Attempt 3   | 00:00:00.006182    | 00:00:00.004304   | 00:00:00.001878  |
+| Attempt 1 | 00:00:00.017159 | 00:00:00.001664 | 00:00:00.015495 |
+| Attempt 2 | 00:00:00.003359 | 00:00:00.001642 | 00:00:00.001717 |
+| Attempt 3 | 00:00:00.006182 | 00:00:00.004304 | 00:00:00.001878 |
 | **Average** | **00:00:00.008233** | **00:00:00.002537** | **00:00:00.005696** |
 
+## Views
+
+Views offer a way to tailor to different user sub-groups. Keep in the mind that a view is a cursor that points to the respective records in the base tables. Any manipulations will affect the original tables they draw records from.
+
+In order to create the provided views, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\create_views.sql" *> create_views.log 2>&1`
+
+In order to run the provided select, insert, update, and delete queries for the created views, the run the following command form the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\view_queries.sql" *> view_queries.log 2>&1`
+
+## Explanation of View Operations:
+
+### LibrarianExpertise
+
+- **INSERT**: Adds a librarian with their expertise and employee data.
+- **UPDATE**: Modifies a librarian's expertise field.
+- **DELETE**: Removes a librarian and their associated employee record.
+
+### SecurityClearance
+
+- **INSERT**: Adds a security personnel with clearance details.
+- **UPDATE**: Changes the clearance level for a specific personnel.
+- **DELETE**: Removes a security record and its associated employee.
+
+### MarketerPerformance
+
+- **INSERT**: Adds a marketer, assigns them to a platform, and includes details about their audience.
+- **UPDATE**: Adjusts follower count for a marketer.
+- **DELETE**: Removes a marketer and their related platform assignments.
+
+### EmployeeContractDetails
+
+- **INSERT**: Adds a new employee with salary and contract details.
+- **UPDATE**: Extends the expiration date of an employee's contract.
+- **DELETE**: Removes an employee record.
+
+## Integrated Views and Queries
+
+In order to create the provided views, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\integrated_create_views.sql" *> integrated_create_views.log 2>&1`
+
+In order to run the provided select, insert, update, and delete queries for the created views, the run the following command form the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\integrated_view_queries.sql" *> integrated_view_queries.log 2>&1`
+
+### ObligatedConservators
+
+- **INSERT**: Adds a conservator to the system with their responsibilities.
+- **UPDATE**: Modifies the salaries of conservators with current tasks.
+- **DELETE**: Remove employees whose contracts have expired and do not have obligations to complete.
+
+**Query Use Case**: To see Conservators who have active tasks. Can be used to make sure you do not add a task to a conservator who is currently working.
+
+### ArchiveEmployees
+
+- **INSERT**: Adds an employee to the archive section.
+- **UPDATE**: Changes the pay of employees in the archive.
+- **DELETE**: Removes Remove low level security personnel from the Archives.
+
+**Query Use Case**: To see all employees in the archive section. Can be used to manage employees of all types who have acsess to the archives.
+
+## Visualizations
+
+In order to visualize some of the data that the queries fetch, a python script called visualizations.py has been provided in the python files folder. Simply navigate there and the run the file to see the provided visualizations.
+
+### 1. **Expertise Distribution in the History Section**
+
+![image](https://github.com/user-attachments/assets/fc737392-072b-4324-abf6-72c4604faa19)
+
+#### Description:
+
+This **bar graph** shows the distribution of **years of experience** among librarians in the History section, grouped by their areas of expertise (e.g., Acquisition, Cataloging, Customer Support). The query fetches the expertise of the librarians working in the History section, and their years of experience in that area.
+
+### 2. **Salary Distribution for Employees)**
+
+![image](https://github.com/user-attachments/assets/9d1c6ce2-8623-485c-aafc-28eeb72698bc)
+
+#### Description:
+
+This **pie chart** illustrates the distribution of employees grouped by salary ranges (e.g., 20k-30k, 50k-60k), limited to employees with contracts expiring before 2028. The query has been modified slightly to return salary ranges for clarity in the pie chart. It fetches salary ranges (20k-30k, 30k-40k, etc.) for employees earning at least 20,000 and whose contracts are expiring before 2028.
+
+## Functions
+
+In order to create the functions that the queries in queries.sql use, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\functions.sql"`
+
+### Explanation of the given functions
+
+**Function #1:** This function retrieves the top N employees sorted by their salary in descending order. It returns their names, dates of birth, and salaries.
+
+**Function #2:** This function calculates the average, minimum, and maximum salaries for employees in the LibraryEmployee table.
+
+**Function #3** This function retrieves librarians with expertise and years of experience greater than a specified threshold. It joins the Librarian and LibraryEmployee tables to provide additional employee details.
+
+**Function #4:** This function retrieves social media platforms managed by marketers where the platform's distribution rating meets or exceeds a specified threshold. It joins the Manages and SocialMedia tables to provide details about the marketer and the platform.
+
+## Integrating the database with another
+
+To successfully integrate another database into ours, we began by planning the ERDs.
+**Original ERD:**
+![ERD](https://github.com/user-attachments/assets/95a2267b-240c-466c-9d5a-0a7a22d8659e)
+
+---
+
+**Partner ERD:**
+![D J ERD](https://github.com/user-attachments/assets/6de0eebc-bb33-4795-9240-04c932f658ef)
+
+---
+
+**Combined ERD:**
+![Combined ERD](https://github.com/user-attachments/assets/505caf61-28af-4269-852f-b1a56ddcb4a4)
+
+---
+
+**Combined DSD:**
+![Combined DSD](https://github.com/user-attachments/assets/a6f56c89-e182-43bc-8fbc-baa2ce9dfc31)
+
+---
+
+**Explanation of the integration:** The integrated ERD focuses on book archives and includes a new employee type responsible for managing the system, referred to as the "Conservator." We incorporated the Conservator into our existing Library Employee supertype, creating a unified structure that enables seamless integration. This approach simplifies writing queries tailored to specific subgroup requirements and ensures a consistent database design across both systems.
