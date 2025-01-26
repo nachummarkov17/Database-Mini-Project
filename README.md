@@ -190,7 +190,7 @@ $duration = $endTime - $startTime
 ## Running queries
 
 To run the provided queries, run the following command from the root:
-`psql -U postgres -d library_employees_db -f ".\sql files\queries.sql" *> Queries.log 2>&1`
+`psql -U postgres -d library_employees_db -f ".\sql files\queries.sql" *> queries.log 2>&1`
 Feel free to comment out any number of queries to only run what you'd like. (Functions have been added in order to make the queries more efficient so they will need to be created, instructions below, before all the queries can be run)
 
 To run the provided parametrized queries, run the following command from the root:
@@ -396,6 +396,9 @@ This **pie chart** illustrates the distribution of employees grouped by salary r
 
 In order to create the functions that the queries in queries.sql use, run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\functions.sql"`
+
+In order to delete the functions, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\delete_functions.sql"`
 
 ### Explanation of the given functions
 

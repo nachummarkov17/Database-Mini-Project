@@ -69,8 +69,8 @@ CREATE TABLE Manages (
     FollowerCount INT NOT NULL,
     TargetAudience VARCHAR(255) NOT NULL,
     PRIMARY KEY (Username, Platform),
-    FOREIGN KEY (MarketerID) REFERENCES Marketer(ID),
-    FOREIGN KEY (Platform) REFERENCES SocialMedia(Platform)
+    FOREIGN KEY (MarketerID) REFERENCES Marketer(ID) ON DELETE CASCADE,
+    FOREIGN KEY (Platform) REFERENCES SocialMedia(Platform) ON DELETE CASCADE
 );
 
 --------- The following tables are from the merge ---------

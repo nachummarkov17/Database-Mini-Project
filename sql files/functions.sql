@@ -4,22 +4,23 @@ RETURNS TABLE(Name VARCHAR(255), DateOfBirth DATE, Salary INT)
 AS $$
 BEGIN
     RETURN QUERY 
-    SELECT Name, DateOfBirth, Salary
+    SELECT LibraryEmployee.Name, LibraryEmployee.DateOfBirth, LibraryEmployee.Salary
     FROM LibraryEmployee
     ORDER BY Salary DESC
     LIMIT n;
 END;
 $$ LANGUAGE plpgsql;
 
+
 -- Function #2:
 CREATE FUNCTION GetSalaryStatistics()
-RETURNS TABLE(AverageSalary FLOAT, MinimumSalary INT, MaximumSalary INT)
+RETURNS TABLE(AverageSalary DOUBLE PRECISION, MinimumSalary INT, MaximumSalary INT)
 AS $$
 BEGIN
     RETURN QUERY
     SELECT 
-        AVG(Salary) AS AverageSalary, 
-        MIN(Salary) AS MinimumSalary, 
+        AVG(Salary)::DOUBLE PRECISION AS AverageSalary,
+        MIN(Salary) AS MinimumSalary,
         MAX(Salary) AS MaximumSalary
     FROM LibraryEmployee;
 END;
