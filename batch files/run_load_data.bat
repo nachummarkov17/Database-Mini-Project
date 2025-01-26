@@ -14,6 +14,13 @@ set MARKETERS_CSV=%CSV_PATH%\marketers.csv
 set SOCIAL_MEDIA_CSV=%CSV_PATH%\social_medias.csv
 set MANAGES_CSV=%CSV_PATH%\manages.csv
 set LIBRARIANS_CSV=%CSV_PATH%\librarians.csv
+set ARCHIVAL_ASSIGNMENTS_CSV=%CSV_PATH%\archival_assignments.csv
+set ARCHIVES_CSV=%CSV_PATH%\archives.csv
+set BOOKS_CSV=%CSV_PATH%\books.csv
+set CONSERVATORS_CSV=%CSV_PATH%\conservators.csv
+set DISPOSALS_CSV=%CSV_PATH%\disposals.csv
+set SHELVES_CSV=%CSV_PATH%\shelves.csv
+set UPKEEPS_CSV=%CSV_PATH%\upkeeps.csv
 
 REM Write SQL queries to a temporary file
 echo BEGIN; > temp_load_data.sql
@@ -49,6 +56,34 @@ echo. >> temp_load_data.sql
 
 echo -- Load data into Manages >> temp_load_data.sql
 echo COPY Manages(MarketerID, Platform, Username, FollowerCount, TargetAudience) FROM '%MANAGES_CSV%' WITH (FORMAT csv, HEADER, DELIMITER ','); >> temp_load_data.sql
+echo. >> temp_load_data.sql
+
+echo -- Load data into Conservator >> temp_load_data.sql
+echo COPY Conservator(ID, Duty) FROM '%CONSERVATORS_CSV%' WITH (FORMAT csv, HEADER, DELIMITER ','); >> temp_load_data.sql
+echo. >> temp_load_data.sql
+
+echo -- Load data into Book >> temp_load_data.sql
+echo COPY Book(Book_ID, Title, Author, Rarity, Genre) FROM '%BOOKS_CSV%' WITH (FORMAT csv, HEADER, DELIMITER ','); >> temp_load_data.sql
+echo. >> temp_load_data.sql
+
+echo -- Load data into Archive_ >> temp_load_data.sql
+echo COPY Archive_(Archive_Number, Book_Type, Capacity) FROM '%ARCHIVES_CSV%' WITH (FORMAT csv, HEADER, DELIMITER ','); >> temp_load_data.sql
+echo. >> temp_load_data.sql
+
+echo -- Load data into Disposal >> temp_load_data.sql
+echo COPY Disposal(Disposal_ID, Book_ID, Conservator_ID, Method, Material_of_Book, Date) FROM '%DISPOSALS_CSV%' WITH (FORMAT csv, HEADER, DELIMITER ','); >> temp_load_data.sql
+echo. >> temp_load_data.sql
+
+echo -- Load data into Shelf >> temp_load_data.sql
+echo COPY Shelf(Archive_Number, Shelf_Number) FROM '%SHELVES_CSV%' WITH (FORMAT csv, HEADER, DELIMITER ','); >> temp_load_data.sql
+echo. >> temp_load_data.sql
+
+echo -- Load data into Upkeep >> temp_load_data.sql
+echo COPY Upkeep(Upkeep_ID, Book_ID, Conservator_ID, Tools_Used, Reason_for_Upkeep, Date) FROM '%UPKEEPS_CSV%' WITH (FORMAT csv, HEADER, DELIMITER ','); >> temp_load_data.sql
+echo. >> temp_load_data.sql
+
+echo -- Load data into Archival_Assignment >> temp_load_data.sql
+echo COPY Archival_Assignment(Assignment_ID, Date, Book_ID, Old_Archive_Room, Old_Shelf, New_Archive_Room, New_Shelf, Conservator_ID) FROM '%ARCHIVAL_ASSIGNMENTS_CSV%' WITH (FORMAT csv, HEADER, DELIMITER ','); >> temp_load_data.sql
 echo. >> temp_load_data.sql
 
 echo -- Commit the transaction >> temp_load_data.sql

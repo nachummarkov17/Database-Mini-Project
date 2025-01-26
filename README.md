@@ -162,10 +162,12 @@ To set up the database schema, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/create_schema.sql"`
 
 To generate the data for the database, navigate to the python files, and run data_generator.py, then data_generator_manages.py, and finally generate_conservator.py
+To generate the data for the database, navigate to the python files, and run data_generator.py, then data_generator_manages.py, and finally generate_conservator.py
 
 To insert all of the data into the tables, open up file explorer and find the folder 'csv files'. Right-click on the folder, click on properties, then security, then edit EVERYONE so it can read. Apply and quit, then run the following command from batch files:
 `.\run_load_data.bat`
 
+To delete all of the from the tables, run the following command from the root:
 To delete all of the from the tables, run the following command from the root:
 `psql -U postgres -d library_employees_db -f "sql files/delete_data.sql"`
 
@@ -195,13 +197,22 @@ Feel free to comment out any number of queries to only run what you'd like. (Fun
 
 To run the provided parametrized queries, run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\params_queries.sql" *> ParamsQueries.log 2>&1`
+To run the provided queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\queries.sql" *> Queries.log 2>&1`
+Feel free to comment out any number of queries to only run what you'd like. (Functions have been added in order to make the queries more efficient so they will need to be created, instructions below, before all the queries can be run)
+
+To run the provided parametrized queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\params_queries.sql" *> ParamsQueries.log 2>&1`
 Feel free to comment out any number of queries to only run what you'd like.
 
+To run the provided join queries, run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\join_queries.sql" *> join_queries.log 2>&1`
 To run the provided join queries, run the following command from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\join_queries.sql" *> join_queries.log 2>&1`
 Feel free to comment out any number of queries to only run what you'd like.
 
 In order to time a SQL query, copy the query of choice into time_query.sql following the instructions provided, and run the following command from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" *> TimedQueryLog.log 2>&1`
 `psql -U postgres -d library_employees_db -f ".\sql files\time_query.sql" *> TimedQueryLog.log 2>&1`
 
 ### Explanation of given queries
@@ -303,13 +314,19 @@ In order to time a SQL query, copy the query of choice into time_query.sql follo
 
 In order to create indices, run the following file from the root:
 `psql -U postgres -d library_employees_db -f ".\sql files\constraints.sql"`
+`psql -U postgres -d library_employees_db -f ".\sql files\constraints.sql"`
 
 In order to remove the indices, run the following file from the root:
+`psql -U postgres -d library_employees_db -f ".\sql files\drop_index.sql"`
 `psql -U postgres -d library_employees_db -f ".\sql files\drop_index.sql"`
 
 **Indexing example with Query #1:**
 | Attempt | No Indexing | Indexing | Time Save |
+| Attempt | No Indexing | Indexing | Time Save |
 |-------------|--------------------|-------------------|------------------|
+| Attempt 1 | 00:00:00.017159 | 00:00:00.001664 | 00:00:00.015495 |
+| Attempt 2 | 00:00:00.003359 | 00:00:00.001642 | 00:00:00.001717 |
+| Attempt 3 | 00:00:00.006182 | 00:00:00.004304 | 00:00:00.001878 |
 | Attempt 1 | 00:00:00.017159 | 00:00:00.001664 | 00:00:00.015495 |
 | Attempt 2 | 00:00:00.003359 | 00:00:00.001642 | 00:00:00.001717 |
 | Attempt 3 | 00:00:00.006182 | 00:00:00.004304 | 00:00:00.001878 |
