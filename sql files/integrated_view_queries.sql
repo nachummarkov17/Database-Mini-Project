@@ -10,8 +10,6 @@ INSERT INTO LibraryEmployee (ID, Name, DateOfBirth, Salary, ExpirationOfContract
 VALUES (300005, 'Tommy Doyle', '1987-09-30', 38000, '2028-06-15');
 INSERT INTO Conservator (ID, Duty)
 VALUES (300005, 'Disposal Worker');
-INSERT INTO Disposal (Conservator_ID, Date, Item, Reason)
-VALUES (300005, '2025-02-10', 'Book', 'Damaged');
 
 -- UPDATE: change the pay of obligated conservators.
 UPDATE LibraryEmployee
