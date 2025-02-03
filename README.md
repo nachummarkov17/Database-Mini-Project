@@ -358,17 +358,17 @@ In order to run the provided select, insert, update, and delete queries for the 
 
 ### ObligatedConservators
 
-- **INSERT**: Adds a conservator to the system with their responsibilities.
-- **UPDATE**: Modifies the salaries of conservators with current tasks.
-- **DELETE**: Remove employees whose contracts have expired and do not have obligations to complete.
+- **INSERT**: Adds a conservator to the system with their responsibilities. Query Time: 00:00:00.016821
+- **UPDATE**: Modifies the salaries of conservators with current tasks. Query Time: 00:00:00.004503
+- **DELETE**: Remove employees whose contracts have expired and do not have obligations to complete. Query Time: 00:00:00.024193
 
 **Query Use Case**: To see Conservators who have active tasks. Can be used to make sure you do not add a task to a conservator who is currently working.
 
 ### ArchiveEmployees
 
-- **INSERT**: Adds an employee to the archive section.
-- **UPDATE**: Changes the pay of employees in the archive.
-- **DELETE**: Removes Remove low level security personnel from the Archives.
+- **INSERT**: Adds an employee to the archive section. Query Time: 00:00:00.157787
+- **UPDATE**: Changes the pay of employees in the archive. Query Time: 00:00:00.003383
+- **DELETE**: Removes Remove low level security personnel from the Archives. Query Time: 00:00:00.043716
 
 **Query Use Case**: To see all employees in the archive section. Can be used to manage employees of all types who have acsess to the archives.
 

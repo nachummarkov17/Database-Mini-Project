@@ -51,7 +51,7 @@ WHERE le.ID IN (
     SELECT ae.ID
     FROM Security, ArchiveEmployees AS ae
     WHERE Security.ID = ae.ID AND ClearanceLevel < 4 AND Area = 'Archives'
-); 
+);
 
 COMMIT;
     

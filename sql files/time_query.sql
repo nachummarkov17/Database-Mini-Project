@@ -7,13 +7,12 @@ BEGIN
     -- Record the start time
     start_time := clock_timestamp();
     
-    -- Query Section. Query #1: Retrieve a list of top 100 employees (LibraryEmployee) sorted by their salaries in descending order, showing their names, dates of birth, and salaries.
-    PERFORM * FROM (
-        SELECT Name, DateOfBirth, Salary
-        FROM LibraryEmployee
-        ORDER BY Salary DESC
-        LIMIT 100
-    ) AS result;
+DELETE FROM LibraryEmployee AS le
+WHERE le.ID IN (
+    SELECT ae.ID
+    FROM Security, ArchiveEmployees AS ae
+    WHERE Security.ID = ae.ID AND ClearanceLevel < 4 AND Area = 'Archives'
+);
 
     -- Record the end time
     end_time := clock_timestamp();
